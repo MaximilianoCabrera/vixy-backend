@@ -2,7 +2,7 @@ package utilities
 
 import (
 	"encoding/json"
-	"github.com/MaximilianoCabrera/Vixy/models"
+	"../models"
 	"os"
 )
 

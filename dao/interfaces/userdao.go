@@ -1,6 +1,6 @@
 package interfaces
 
-import "github.com/MaximilianoCabrera/Vixy/models"
+import "../../models"
 
 type UserDAO interface {
 	Create(u models.User) error

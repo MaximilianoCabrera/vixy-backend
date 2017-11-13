@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
-	"github.com/MaximilianoCabrera/Vixy/routes"
+	"./routes"
 	"github.com/rs/cors"
 )
 

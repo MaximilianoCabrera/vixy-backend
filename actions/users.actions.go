@@ -3,11 +3,11 @@ package actions
 import (
 	"fmt"
 	"net/http"
-	"github.com/MaximilianoCabrera/Vixy/models"
+	"../models"
 	"encoding/json"
-	"github.com/MaximilianoCabrera/Vixy/utilities"
+	"../utilities"
 	"log"
-	"github.com/MaximilianoCabrera/Vixy/dao/factory"
+	"../dao/factory"
 )
 
 //response Usuario

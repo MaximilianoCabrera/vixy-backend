@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/MaximilianoCabrera/Vixy/actions"
+	"../actions"
 	"github.com/gorilla/mux"
 	"net/http"
 )

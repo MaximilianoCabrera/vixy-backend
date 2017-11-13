@@ -1,9 +1,9 @@
 package factory
 
 import (
-	"github.com/MaximilianoCabrera/Vixy/dao/interfaces"
+	"../../dao/interfaces"
 	//"github.com/MaximilianoCabrera/Vixy/dao/psql"
-	"github.com/MaximilianoCabrera/Vixy/dao/mysql"
+	"../../dao/mysql"
 	"log"
 )
 

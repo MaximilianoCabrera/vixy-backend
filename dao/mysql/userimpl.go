@@ -2,7 +2,7 @@ package mysql
 
 import (
 	"errors"
-	"github.com/MaximilianoCabrera/Vixy/models"
+	"../../models"
 	"log"
 )
 

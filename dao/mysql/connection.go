@@ -3,7 +3,7 @@ package mysql
 import (
 	"database/sql"
 	"fmt"
-	"github.com/MaximilianoCabrera/Vixy/utilities"
+	"../../utilities"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 )

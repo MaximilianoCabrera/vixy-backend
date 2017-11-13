@@ -2,7 +2,7 @@ package psql
 
 import (
 	"database/sql"
-	"github.com/MaximilianoCabrera/Vixy/utilities"
+	"../../utilities"
 	"log"
 
 	"fmt"

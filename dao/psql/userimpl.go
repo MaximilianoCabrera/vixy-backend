@@ -2,7 +2,7 @@ package psql
 
 import (
 	"errors"
-	"github.com/MaximilianoCabrera/Vixy/models"
+	"../../models"
 )
 
 type UserImplPsql struct{}
