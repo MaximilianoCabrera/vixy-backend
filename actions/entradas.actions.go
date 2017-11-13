@@ -11,7 +11,7 @@ import (
 )
 
 // response Usuario
-func responseUser(w http.ResponseWriter, status int, results models.User, err error){
+func responseEntrada(w http.ResponseWriter, status int, results models.Entrada, err error){
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	if err != nil{
@@ -21,7 +21,7 @@ func responseUser(w http.ResponseWriter, status int, results models.User, err er
 }
 
 // response Usuarios
-func responseUsers(w http.ResponseWriter, status int, results []models.User, err error) {
+func responseEntradas(w http.ResponseWriter, status int, results []models.Entrada, err error) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	if err != nil{
@@ -30,17 +30,19 @@ func responseUsers(w http.ResponseWriter, status int, results []models.User, err
 	json.NewEncoder(w).Encode(results)
 }
 
-func UsersGetAll(w http.ResponseWriter, r *http.Request) {
-	var users []models.User
+func EntradasGetAll(w http.ResponseWriter, r *http.Request) {
+	var entradas []models.Entrada
 	config, err := utilities.GetConfiguration()
 	if err != nil {
 		log.Fatalln(err)
 	}
-	userDAO := factory.UserFactoryDAO(config.Engine, )
 
-	users, err = userDAO.GetAll()
+	entradasDAO := factory.EntradaFactoryDAO(config.Engine)
+
+	entradas, err = entradasDAO.GetAll()
 	if err != nil{
-		responseUsers(w, 404, nil, err)
+		responseEntradas(w, 404, nil, err)
 	}
-	responseUsers(w, 200, users, nil)
+	responseEntradas(w, 200, entradas, nil)
 }
+

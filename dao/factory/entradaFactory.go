@@ -2,18 +2,18 @@ package factory
 
 import (
 	"../../dao/interfaces"
-	//"github.com/MaximilianoCabrera/Vixy/dao/psql"
 	"../../dao/mysql"
 	"log"
+	//"github.com/MaximilianoCabrera/Vixy/dao/psql"
 )
 
-func FactoryDAO(e string) interfaces.UserDAO {
-	var i interfaces.UserDAO
+func EntradaFactoryDAO(e string) interfaces.EntradasDAO {
+	var i interfaces.EntradasDAO
 	switch e {
 	//case "postgres":
 	//	i = psql.UserImplPsql{}
 	case "mysql":
-		i = mysql.UserImplMysql{}
+		i = mysql.EntradaImplMysql{}
 	default:
 		log.Fatalf("El motor %s no está implementado", e)
 		return nil

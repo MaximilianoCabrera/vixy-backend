@@ -44,4 +44,10 @@ var routes = Routes{
 		"/users",
 		actions.UsersGetAll,
 	},
+	Route{
+		"EntradasGetAll",
+		"GET",
+		"/entradas",
+		actions.EntradasGetAll,
+	},
 }
