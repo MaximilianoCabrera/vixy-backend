@@ -1,7 +1,6 @@
 package actions
 
 import (
-	"fmt"
 	"net/http"
 	"../models"
 	"encoding/json"
@@ -27,7 +26,6 @@ func responseUsers(w http.ResponseWriter, status int, results []models.User, err
 }
 
 func UsersGetAll(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hola mundo desde golang")
 	var users []models.User
 	config, err := utilities.GetConfiguration()
 	if err != nil {

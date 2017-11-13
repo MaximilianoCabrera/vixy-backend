@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="76adadb9-4a3a-42e4-9709-e3b1983e49e1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/actions/users.actions.go" afterPath="$PROJECT_DIR$/actions/users.actions.go" />
-      <change beforePath="$PROJECT_DIR$/dao/factory/factory.go" afterPath="$PROJECT_DIR$/dao/factory/factory.go" />
-      <change beforePath="$PROJECT_DIR$/dao/interfaces/userdao.go" afterPath="$PROJECT_DIR$/dao/interfaces/userdao.go" />
-      <change beforePath="$PROJECT_DIR$/dao/mysql/connection.go" afterPath="$PROJECT_DIR$/dao/mysql/connection.go" />
-      <change beforePath="$PROJECT_DIR$/dao/mysql/userimpl.go" afterPath="$PROJECT_DIR$/dao/mysql/userimpl.go" />
-      <change beforePath="$PROJECT_DIR$/dao/psql/connection.go" afterPath="$PROJECT_DIR$/dao/psql/connection.go" />
-      <change beforePath="$PROJECT_DIR$/dao/psql/userimpl.go" afterPath="$PROJECT_DIR$/dao/psql/userimpl.go" />
       <change beforePath="$PROJECT_DIR$/main.go" afterPath="$PROJECT_DIR$/main.go" />
-      <change beforePath="$PROJECT_DIR$/routes/routes.go" afterPath="$PROJECT_DIR$/routes/routes.go" />
-      <change beforePath="$PROJECT_DIR$/utilities/utilities.go" afterPath="$PROJECT_DIR$/utilities/utilities.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +13,46 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding>
+                <element signature="e#14#70#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/routes.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="636">
+              <caret line="44" column="24" lean-forward="false" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
+              <folding>
+                <element signature="e#16#78#0" expanded="true" />
+                <element signature="e#222#340#0" expanded="false" />
+                <element signature="e#395#491#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.actions.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/actions/users.actions.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+              <folding>
+                <element signature="e#17#110#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -77,9 +108,7 @@
         <option value="$PROJECT_DIR$/actions/main.actions.go" />
         <option value="$PROJECT_DIR$/actions/pais.actions.go" />
         <option value="$PROJECT_DIR$/frontend/angular/controllers/user.controller.js" />
-        <option value="$PROJECT_DIR$/actions/users.actions.go" />
         <option value="$PROJECT_DIR$/routes/routes.go" />
-        <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/dao/factory/factory.go" />
         <option value="$PROJECT_DIR$/dao/interfaces/userdao.go" />
         <option value="$PROJECT_DIR$/dao/mysql/connection.go" />
@@ -87,6 +116,8 @@
         <option value="$PROJECT_DIR$/dao/psql/connection.go" />
         <option value="$PROJECT_DIR$/utilities/utilities.go" />
         <option value="$PROJECT_DIR$/dao/psql/userimpl.go" />
+        <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/actions/users.actions.go" />
       </list>
     </option>
   </component>
@@ -140,6 +171,16 @@
               <item name="vixy-backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="vixy-backend" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="vixy-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vixy-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vixy-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vixy-backend" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -190,8 +231,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20364584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20364584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969433" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29605964" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -218,7 +260,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -227,7 +269,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#14#70#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -255,7 +299,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#14#70#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -283,7 +329,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#14#70#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -311,7 +359,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="31" column="17" lean-forward="false" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding />
+          <folding>
+            <element signature="e#14#70#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -339,7 +389,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
-          <folding />
+          <folding>
+            <element signature="e#14#70#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -367,7 +419,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#14#70#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -419,26 +473,10 @@
     <entry file="file://$PROJECT_DIR$/front/pages/Users.html" />
     <entry file="file://$PROJECT_DIR$/front/pages/index.html" />
     <entry file="file://$PROJECT_DIR$/frontend/angular/controllers/user.controller.js" />
-    <entry file="file://$PROJECT_DIR$/actions/users.actions.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="8" lean-forward="true" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/actions/main.actions.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="4" column="10" lean-forward="true" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="14" lean-forward="true" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -523,14 +561,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#14#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/routes.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        <state relative-caret-position="636">
+          <caret line="44" column="24" lean-forward="false" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
           <folding>
+            <element signature="e#16#78#0" expanded="true" />
             <element signature="e#222#340#0" expanded="false" />
             <element signature="e#395#491#0" expanded="false" />
-            <element signature="e#561#693#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/users.actions.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          <folding>
+            <element signature="e#17#110#0" expanded="true" />
           </folding>
         </state>
       </provider>
