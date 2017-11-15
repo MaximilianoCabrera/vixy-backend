@@ -1,15 +1,15 @@
 package mysql
 
 import (
-	"errors"
 	"../../models"
 	"log"
+	"errors"
 )
 
-type UserImplMysql struct{}
+type TipoUsuarioImplMysql struct{}
 
-func (dao UserImplMysql) Create(u models.User) error {
-	query := "INSERT INTO users (nombre, apellido, nick, email, password) VALUES (?, ?, ?, ?, ?)"
+func (dao TipoUsuarioImplMysql) Create(tu models.TipoUsuario) error {
+	query := "INSERT INTO tipoUsuario (id, nombre) VALUES (?, ?)"
 	db := get()
 	defer db.Close()
 
@@ -20,7 +20,7 @@ func (dao UserImplMysql) Create(u models.User) error {
 	}
 	defer stmt.Close()
 
-	result, err := stmt.Exec(u.Nombre, u.Apellido, u.Nick, u.Email, u.Password)
+	result, err := stmt.Exec(tu.ID, tu.Nombre)
 	if err != nil {
 		return err
 	}
@@ -31,11 +31,11 @@ func (dao UserImplMysql) Create(u models.User) error {
 		return err
 	}
 
-	u.ID = int(id)
+	tu.ID = int(id)
 	return nil
 }
-func (dao UserImplMysql) GetByID(id int) (models.User, error) {
-	query := "SELECT id, nombre, apellido, nick, email, apellido FROM users WHERE id = ?"
+func (dao TipoUsuarioImplMysql) GetByID(id int) (models.TipoUsuario, error){
+	query := "SELECT id, nombre FROM tipoUsuario WHERE id = ?"
 
 	db := get()
 	defer db.Close()
@@ -48,45 +48,45 @@ func (dao UserImplMysql) GetByID(id int) (models.User, error) {
 	defer stmt.Close()
 	row := db.QueryRow(query, id)
 
-	var user = models.User{}
+	var tipoUsuario = models.TipoUsuario{}
 
-	err = row.Scan(&user.ID, &user.Nombre, &user.Nick, &user.Apellido, &user.Email, &user.Password)
+	err = row.Scan(&tipoUsuario.ID, &tipoUsuario.Nombre)
 	if err != nil {
-		return user, err
+		return tipoUsuario, err
 	}
 
-	return user, nil
+	return tipoUsuario, nil
 }
-func (dao UserImplMysql) GetAll() ([]models.User, error) {
-	query := "SELECT id, nombre, apellido, nick, email, password FROM users"
-	users := make([]models.User, 0)
+func (dao TipoUsuarioImplMysql) GetAll() ([]models.TipoUsuario, error){
+	query := "SELECT id, nombre FROM tipoUsuario"
+	tipoUsuario := make([]models.TipoUsuario, 0)
 	db := get()
 	defer db.Close()
 
 	//creo una sentencia=statement
 	stmt, err := db.Prepare(query)
 	if err != nil {
-		return users, err
+		return tipoUsuario, err
 	}
 	defer stmt.Close()
 
 	rows, err := stmt.Query()
 	if err != nil {
-		return users, err
+		return tipoUsuario, err
 	}
 
 	for rows.Next() {
-		var row models.User
-		err := rows.Scan(&row.ID, &row.Nombre, &row.Apellido, &row.Nick, &row.Email, &row.Password)
+		var row models.TipoUsuario
+		err := rows.Scan(&row.ID, &row.Nombre)
 		if err != nil {
-			return users, err
+			return tipoUsuario, err
 		}
-		users = append(users, row)
+		tipoUsuario = append(tipoUsuario, row)
 	}
-	return users, nil
+	return tipoUsuario, nil
 }
-func (dao UserImplMysql) Update(u models.User) error {
-	query := "UPDATE users SET nombre = ?, apellido = ?, nick = ?, email = ?, password = ? WHERE id = ?"
+func (dao TipoUsuarioImplMysql) Update(tu models.TipoUsuario) error{
+	query := "UPDATE tipoUsuario SET nombre = ? WHERE id = ?"
 	db := get()
 	defer db.Close()
 
@@ -96,7 +96,7 @@ func (dao UserImplMysql) Update(u models.User) error {
 	}
 	defer stmt.Close()
 
-	row, err := stmt.Exec(u.Nombre, u.Apellido, u.Nick, u.Email, u.Password, u.ID)
+	row, err := stmt.Exec(tu.Nombre, tu.ID)
 	if err != nil {
 		return err
 	}
@@ -107,7 +107,7 @@ func (dao UserImplMysql) Update(u models.User) error {
 	}
 	return nil
 }
-func (dao UserImplMysql) Delete(id int) error {
+func (dao TipoUsuarioImplMysql) Delete(id int) error{
 	query := "DELETE FROM users WHERE id = ?"
 	db := get()
 	defer db.Close()

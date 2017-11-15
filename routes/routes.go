@@ -39,10 +39,22 @@ var routes = Routes{
 		actions.Index,
 	},
 	Route{
-		"UsersGetAll",
+		"UserCreate",
+		"POST",
+		"/usuario",
+		actions.UserCreate,
+	},
+	Route{
+		"UserGetAll",
 		"GET",
-		"/users",
-		actions.UsersGetAll,
+		"/usuarios",
+		actions.UserGetAll,
+	},
+	Route{
+		"UserGetOne",
+		"GET",
+		"/usuarios/{id}",
+		actions.UserGetOne,
 	},
 	Route{
 		"EntradasGetAll",

@@ -8,7 +8,7 @@ import (
 type EntradaImplMysql struct{}
 
 func (dao EntradaImplMysql ) Create (e models.Entrada) error{
-	query := "INSERT INTO entradas (titulo, imagen) VALUES (?, ?)"
+	query := "INSERT INTO entradas (titulo, imagen, url) VALUES (?, ?, ?)"
 	db := get()
 	defer db.Close()
 
@@ -19,7 +19,7 @@ func (dao EntradaImplMysql ) Create (e models.Entrada) error{
 	}
 	defer stmt.Close()
 
-	result, err := stmt.Exec(e.Titulo, e.Imagen)
+	result, err := stmt.Exec(e.Titulo, e.Imagen, e.Url)
 	if err != nil {
 		return err
 	}
@@ -34,7 +34,7 @@ func (dao EntradaImplMysql ) Create (e models.Entrada) error{
 	return nil
 }
 func (dao EntradaImplMysql ) GetByID(id int) (models.Entrada , error) {
-	query := "SELECT id, titulo, imagen FROM entradas WHERE id = ?"
+	query := "SELECT id, titulo, imagen, url FROM entradas WHERE id = ?"
 
 	db := get()
 	defer db.Close()
@@ -49,7 +49,7 @@ func (dao EntradaImplMysql ) GetByID(id int) (models.Entrada , error) {
 
 	var entrada = models.Entrada{}
 
-	err = row.Scan(&entrada.ID, &entrada.Titulo, &entrada.Imagen)
+	err = row.Scan(&entrada.ID, &entrada.Titulo, &entrada.Imagen, &entrada.Url)
 
 	if err != nil {
 		return entrada , err
@@ -57,7 +57,7 @@ func (dao EntradaImplMysql ) GetByID(id int) (models.Entrada , error) {
 	return entrada , nil
 }
 func (dao EntradaImplMysql ) GetAll() ([]models.Entrada, error) {
-	query := "SELECT id, titulo, imagen FROM entradas"
+	query := "SELECT id, titulo, imagen, url FROM entradas"
 	entradas := make([]models.Entrada, 0)
 	db := get()
 	defer db.Close()
@@ -76,7 +76,7 @@ func (dao EntradaImplMysql ) GetAll() ([]models.Entrada, error) {
 
 	for rows.Next() {
 		var row models.Entrada
-		err := rows.Scan(&row.ID, &row.Titulo, &row.Imagen)
+		err := rows.Scan(&row.ID, &row.Titulo, &row.Imagen, &row.Url)
 		if err != nil {
 			return entradas, err
 		}
@@ -85,7 +85,7 @@ func (dao EntradaImplMysql ) GetAll() ([]models.Entrada, error) {
 	return entradas, nil
 }
 func (dao EntradaImplMysql ) Update(e models.Entrada) error {
-	query := "UPDATE users SET titulo = ?, imagen = ? WHERE id = ?"
+	query := "UPDATE users SET titulo = ?, imagen = ?, url = ? WHERE id = ?"
 	db := get()
 	defer db.Close()
 
@@ -95,7 +95,7 @@ func (dao EntradaImplMysql ) Update(e models.Entrada) error {
 	}
 	defer stmt.Close()
 
-	row, err := stmt.Exec(e.Titulo, e.Imagen, e.ID)
+	row, err := stmt.Exec(e.Titulo, e.Imagen, e.Url, e.ID)
 	if err != nil {
 		return err
 	}
