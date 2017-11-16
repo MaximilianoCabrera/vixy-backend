@@ -32,30 +32,35 @@ type Route struct {
 type Routes []Route
 
 var routes = Routes{
+	//Index
 	Route{
 		"Index",
 		"GET",
 		"/",
 		actions.Index,
 	},
+	//UsuarioCreate
 	Route{
 		"UserCreate",
 		"POST",
 		"/usuario",
-		actions.UserCreate,
+		actions.UsuarioCreate,
 	},
+	//UserGetAll
 	Route{
 		"UserGetAll",
 		"GET",
 		"/usuarios",
 		actions.UserGetAll,
 	},
+	//UserGetOne
 	Route{
 		"UserGetOne",
 		"GET",
-		"/usuarios/{id}",
+		"/usuarios/{params}",
 		actions.UserGetOne,
 	},
+	//EntradasGetAll
 	Route{
 		"EntradasGetAll",
 		"GET",

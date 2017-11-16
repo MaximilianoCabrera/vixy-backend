@@ -1,5 +1,6 @@
 package routes
 
+/*
 import (
 
 	"github.com/gorilla/mux"
@@ -20,4 +21,4 @@ func NewPaisRouter() *mux.Router {
 
 var paisRoutes = Routes{
 
-}
+}*/

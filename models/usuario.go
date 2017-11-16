@@ -7,6 +7,6 @@ type Usuario struct {
 	Nick        string
 	Email       string
 	Pass	    string
-	TipoUsuario string
-	Imagen	    string
+	TipoUsuario int
+	IDImagen	int
 }

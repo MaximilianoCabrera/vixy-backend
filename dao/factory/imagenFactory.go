@@ -1,23 +1,14 @@
 package factory
 
 import (
-	"../mysql"
-	"../interfaces"
-	"log"
-
+	"../../dao/interfaces"
+	"../../dao/mysql"
 )
 
-func ImagenFactoryDAO(img string) interfaces.ImagenDAO {
+func ImagenFactoryDAO(e string) interfaces.ImagenDAO {
 	var i interfaces.ImagenDAO
-	switch img {
-	//case "postgres":
-	//	i = psql.UserImplPsql{}
-	case "mysql":
-		i = mysql.ImagenImplMysql{}
-	default:
-		log.Fatalf("El motor %s no está implementado", img)
-		return nil
-	}
+	i = mysql.ImagenImplMysql{}
+
 	return i
 }
 

@@ -1,86 +1,74 @@
 package mysql
 
 import (
+
+	"../../models"
 	"log"
 	"errors"
-	"../../models"
-	"../../dao/factory"
-	"../../utilities"
 )
 
 type ImagenImplMysql struct{}
 
-func (dao ImagenImplMysql) Create(i *models.Imagen) error {
-	query := "INSERT INTO usuario (nombre, apellido, nick, email, pass, idTipoUsuario, idImagen) VALUES (?, ?, ?, ?, ?, ?, ?)"
+
+func (dao ImagenImplMysql) Create(i *models.Imagen) (models.Imagen, error){
+	query := "INSERT INTO imagen (Imagen) VALUES (?)"
 	db := get()
 	defer db.Close()
+
+	var img models.Imagen
+	img.Imagen = i.Imagen
 
 	//creo una sentencia=statement
 	stmt, err := db.Prepare(query)
 	if err != nil {
-		return err
+		return img, err
 	}
 	defer stmt.Close()
 
-	config, err := utilities.GetConfiguration()
-	if err != nil{
-		log.Fatalln(err)
-	}
-	//TODO: Obtener el valor del id de la imagen - u.IDImagen
-	tipoUsuarioDAO := factory.TipoUsuarioFactoryDAO(config.Engine)
-
-	var tipoUsuario models.TipoUsuario
-	tipoUsuario.Nombre = u.TipoUsuario
-
-	tipoUsuarioDAO.GetOne(tipoUsuario)
-
-	//imagenDAO := factory.ImagenFactoryDAO(config.Engine)
-
-
-	result, err := stmt.Exec(u.Nombre, u.Apellido, u.Nick, u.Email, u.Pass, tipoUsuario, u.IDImagen)
+	result, err := stmt.Exec(i.Imagen)
 	if err != nil {
-		return err
+		return img, err
 	}
 
 	//con esto nos devuelve el ID
 	id, err := result.LastInsertId()
 	if err != nil {
-		return err
+		return img, err
 	}
 
-	u.ID = int(id)
-	return nil
+	img.ID = int(id)
+	return img, nil
 }
 func (dao ImagenImplMysql) GetAll() ([]models.Imagen, error) {
-	query := "SELECT id, nombre, apellido, nick, email, pass, idTipoUsuario, idImagen FROM usuario"
-	usuarios := make([]models.Usuario, 0)
+	query := "SELECT id, imagen FROM imagen"
+	imgs := make([]models.Imagen, 0)
 	db := get()
 	defer db.Close()
 
 	//creo una sentencia=statement
 	stmt, err := db.Prepare(query)
 	if err != nil {
-		return usuarios, err
+		return imgs, err
 	}
 	defer stmt.Close()
 
 	rows, err := stmt.Query()
 	if err != nil {
-		return usuarios, err
+		return imgs, err
 	}
 
 	for rows.Next() {
-		var row models.Usuario
-		err := rows.Scan(&row.Nombre, &row.Apellido, &row.Nick, &row.Email, &row.IDTipoUsuario, &row.IDImagen)
+		var row models.Imagen
+		err := rows.Scan(&row.ID, &row.Imagen)
 		if err != nil {
-			return usuarios, err
+			return imgs, err
 		}
-		usuarios = append(usuarios, row)
+		imgs = append(imgs, row)
 	}
-	return usuarios, nil
+	return imgs, nil
 }
 func (dao ImagenImplMysql) GetByID(id int) (models.Imagen, error) {
-	query := "SELECT id, nombre, apellido, nick, email, password, idTipoUsuario FROM usuario WHERE id = ?"
+	query := "SELECT imagen FROM imagen WHERE id = ?"
 
 	db := get()
 	defer db.Close()
@@ -93,18 +81,54 @@ func (dao ImagenImplMysql) GetByID(id int) (models.Imagen, error) {
 	defer stmt.Close()
 	row := db.QueryRow(query, id)
 
-	var user = models.User{}
+	var img = models.Imagen{}
 
-	err = row.Scan(&user.ID, &user.Nombre, &user.Apellido, &user.Nick, &user.Email, &user.Password, &user.IDTipoUsuario)
+	err = row.Scan(&img.ID, &img.Imagen)
 	if err != nil {
-		return user, err
+		return img, err
 	}
-	return user, nil
+	return img, nil
 }
 func (dao ImagenImplMysql) GetOne(i models.Imagen) (models.Imagen, error){
+	query := "SELECT id, imagen FROM imagen WHERE id = ?"
+
+	db := get()
+	defer db.Close()
+
+	//creo una sentencia=statement
+	stmt, err := db.Prepare(query)
+	if err != nil {
+		log.Panic(err)
+	}
+	defer stmt.Close()
+
+	/*
+	//Obtengo el id de la imagen
+	config, err := utilities.GetConfiguration()
+	if err != nil{
+		log.Fatalln(err)
+	}
+	var img models.Imagen
+	img.Imagen = i.Imagen
+
+	if img.Imagen != ""{
+		imagenDAO := factory.ImagenFactoryDAO(config.Engine)
+		img, err = imagenDAO.GetOne(img)
+	}
+	*/
+
+	row := db.QueryRow(query, i.ID, i.Imagen)
+
+	var imagen = models.Imagen{}
+
+	err = row.Scan(&imagen.ID, &imagen.Imagen)
+	if err != nil {
+		return imagen, err
+	}
+	return imagen, nil
 }
 func (dao ImagenImplMysql) Update(i models.Imagen) error {
-	query := "UPDATE usuario SET nombre = ?, apellido = ?, nick = ?, email = ?, password = ? WHERE id = ?"
+	query := "UPDATE imagen SET nombre = ? WHERE id = ?"
 	db := get()
 	defer db.Close()
 
@@ -114,19 +138,22 @@ func (dao ImagenImplMysql) Update(i models.Imagen) error {
 	}
 	defer stmt.Close()
 
-	row, err := stmt.Exec(u.Nombre, u.Apellido, u.Nick, u.Email, u.Password, u.ID)
+	var img models.Imagen
+	img.Imagen = i.Imagen
+
+	row, err := stmt.Exec(i.Imagen)
 	if err != nil {
 		return err
 	}
 
-	i, _ := row.RowsAffected()
-	if i != 1 {
+	e, _ := row.RowsAffected()
+	if e != 1 {
 		return errors.New("Error: Se esperaba 1 fila afectada")
 	}
 	return nil
 }
 func (dao ImagenImplMysql) Delete(id int) error {
-	query := "DELETE FROM usuario WHERE id = ?"
+	query := "DELETE FROM imagen WHERE id = ?"
 	db := get()
 	defer db.Close()
 

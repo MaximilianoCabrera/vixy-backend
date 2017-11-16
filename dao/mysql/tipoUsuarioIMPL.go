@@ -8,6 +8,7 @@ import (
 
 type TipoUsuarioImplMysql struct{}
 
+
 func (dao TipoUsuarioImplMysql) Create(tu models.TipoUsuario) error {
 	query := "INSERT INTO tipoUsuario (id, nombre) VALUES (?, ?)"
 	db := get()
@@ -47,6 +48,29 @@ func (dao TipoUsuarioImplMysql) GetByID(id int) (models.TipoUsuario, error){
 	}
 	defer stmt.Close()
 	row := db.QueryRow(query, id)
+
+	var tipoUsuario = models.TipoUsuario{}
+
+	err = row.Scan(&tipoUsuario.ID, &tipoUsuario.Nombre)
+	if err != nil {
+		return tipoUsuario, err
+	}
+
+	return tipoUsuario, nil
+}
+func (dao TipoUsuarioImplMysql) GetOne(tu models.TipoUsuario) (models.TipoUsuario, error){
+	query := "SELECT id, nombre FROM tipoUsuario WHERE id = ? OR nombre = ?"
+
+	db := get()
+	defer db.Close()
+
+	//creo una sentencia=statement
+	stmt, err := db.Prepare(query)
+	if err != nil {
+		log.Panic(err)
+	}
+	defer stmt.Close()
+	row := db.QueryRow(query, tu.ID, tu.Nombre)
 
 	var tipoUsuario = models.TipoUsuario{}
 
@@ -129,3 +153,4 @@ func (dao TipoUsuarioImplMysql) Delete(id int) error{
 	}
 	return nil
 }
+

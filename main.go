@@ -1,15 +1,15 @@
 package main
 
 import (
-	"net/http"
-	"./routes"
 	"github.com/rs/cors"
-)
+	"net/http"
 
+	"./routes"
+)
 
 func main() {
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"http://localhost:4200"},
+		AllowedOrigins:   []string{"http://localhost:4200"},
 		AllowCredentials: true,
 	})
 

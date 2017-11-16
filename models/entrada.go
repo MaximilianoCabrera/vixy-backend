@@ -7,11 +7,11 @@ type Entrada struct {
 	Titulo     string
 	Subtitulo  string
 	Contenido  string
-	Topic      int
+	Topic      Topic
 	Fecha      time.Time
 	Valoracion float32
-	IDCiudad   int
+	IDCiudad   Ciudad
 	Visitas    int
-	IDimagen   int
+	Imagen     Imagen
 	Url        string
 }
