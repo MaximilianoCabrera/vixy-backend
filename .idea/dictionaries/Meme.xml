@@ -2,7 +2,10 @@
   <dictionary name="Meme">
     <words>
       <w>actividad</w>
+      <w>actualizar</w>
+      <w>afectada</w>
       <w>apellido</w>
+      <w>cargada</w>
       <w>cargar</w>
       <w>ciudad</w>
       <w>comentario</w>
@@ -18,8 +21,10 @@
       <w>dimagen</w>
       <w>entrada</w>
       <w>entradas</w>
+      <w>esperaba</w>
       <w>esto</w>
       <w>fecha</w>
+      <w>fila</w>
       <w>guardar</w>
       <w>guardo</w>
       <w>imagen</w>
@@ -32,6 +37,7 @@
       <w>pudo</w>
       <w>revisar</w>
       <w>sentencia</w>
+      <w>siguientes</w>
       <w>subtitulo</w>
       <w>tipo</w>
       <w>titulo</w>
@@ -40,6 +46,7 @@
       <w>usuarios</w>
       <w>valoracion</w>
       <w>valores</w>
+      <w>vieja</w>
       <w>visitas</w>
       <w>vixy</w>
     </words>

@@ -8,7 +8,6 @@ import (
 	"../utilities"
 	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
 	"log"
 	"strconv"
 )
@@ -22,6 +21,7 @@ func responseUser(w http.ResponseWriter, status int, results models.Usuario, err
 	}
 	json.NewEncoder(w).Encode(results)
 }
+
 // response Usuarios
 func responseUsers(w http.ResponseWriter, status int, results []models.Usuario, err error) {
 	w.Header().Set("Content-Type", "application/json")
@@ -44,71 +44,74 @@ func UsuarioCreate(w http.ResponseWriter, r *http.Request) {
 	var trans1 = false
 	var trans2 = false
 
-	usuarioDAO := factory.UsuarioFactoryDAO(config.Engine)
-	usuario := models.Usuario{}
-	imagenDAO := factory.ImagenFactoryDAO(config.Engine)
-	img := models.Imagen{}
+	var user models.Usuario
 
-	fmt.Print("Nombre: ")
-	fmt.Scan(&usuario.Nombre)
-	fmt.Print("Apellido: ")
-	fmt.Scan(&usuario.Apellido)
-	fmt.Print("Nick: ")
-	fmt.Scan(&usuario.Nick)
-	fmt.Print("Email: ")
-	fmt.Scan(&usuario.Email)
-	fmt.Print("Password: ")
-	fmt.Scan(&usuario.Pass)
-	usuario.TipoUsuario = 2
-	fmt.Print("Nombre de la imagen: ")
-	fmt.Scan(&img.Imagen)
 
-	// Cargo todos los valores de la imagen
 
-	var msjUser = "No se pudo cargar el usuario."
-	var msjImagen = ""
+	a := r.URL.Query()
+	user.Nombre = a.Get("nombre")
+	user.Apellido = a.Get("apellido")
+	user.Nick = a.Get("nick")
+	user.Email = a.Get("email")
+	user.Password = a.Get("password")
+	user.TipoUsuario = 2
 
-	imagen, err := imagenDAO.Create(&img)
-	if err != nil {
-		fmt.Print("Error: ", err)
-		msjImagen = "No se pudo cargar la imagen."
-	} else {
-		msjImagen = "Imagen cargada correctamente"
-		trans1 = true
-	}
+	if user.Nombre != "" &&
+		user.Apellido != "" &&
+		user.Nick != "" &&
+		user.Email != "" &&
+		user.Password != "" {
+		var msjUser = "No se pudo cargar el usuario."
+		var msjImagen = ""
 
-	// Cargo todos los valores del nuevo usuario
-	if trans1 == true {
-		usuario.IDImagen = imagen.ID
-		fmt.Println("*******")
-		fmt.Println(imagen.ID)
-		fmt.Println("*******")
-		msjUser, err = usuarioDAO.Create(&usuario)
-		if err != nil {
-			fmt.Println("")
-			fmt.Println("No se pudo crear el usuario.", err)
-			fmt.Println("")
-
-			err2 := imagenDAO.Delete(imagen.ID)
-			fmt.Println("Se han borrado tanto los datos del usuario como de la imagen.")
-			fmt.Println("")
-			if err2 != nil {
-				fmt.Println("Error2: ", err2)
-				fmt.Println("")
-			}
+		img := models.Imagen{}
+		if a.Get("imagen") != "" {
+			// Cargo todos los valores de la imagen
+			img.Imagen = a.Get("imagen")
+		} else {
+			img.Imagen = "user.jpg"
 		}
-		fmt.Println("*******")
-		fmt.Println(usuario)
-		fmt.Println("*******")
 
-		trans2 = true
-	}
+		imagenDAO := factory.ImagenFactoryDAO(config.Engine)
+		imagen, err := imagenDAO.Create(&img)
+		if err != nil {
+			fmt.Print("Error: ", err)
+			msjImagen = "No se pudo cargar la imagen."
+		} else {
+			msjImagen = "Imagen cargada correctamente"
+			trans1 = true
+		}
 
-	if trans1 && trans2 == true {
-		fmt.Println(msjImagen, msjUser)
+		// Cargo todos los valores del nuevo usuario
+		if trans1 == true {
+			usuarioDAO := factory.UsuarioFactoryDAO(config.Engine)
+			user.Imagen = imagen.ID
+			msjUser, err = usuarioDAO.Create(&user)
+			if err != nil {
+				fmt.Println("")
+				fmt.Println("No se pudo crear el usuario.", err)
+				fmt.Println("")
+
+				err2 := imagenDAO.Delete(imagen.ID)
+				fmt.Println("Se han borrado tanto los datos del usuario como de la imagen.")
+				fmt.Println("")
+				if err2 != nil {
+					fmt.Println("Error2: ", err2)
+					fmt.Println("")
+				}
+			}
+			trans2 = true
+		}
+
+		if trans1 && trans2 == true {
+			fmt.Println(msjImagen)
+			fmt.Println(msjUser)
+		} else {
+			fmt.Println("Por favor vuelta a intentar cargar los datos en otro momento.")
+			fmt.Println("")
+		}
 	} else {
-		fmt.Println("Por favor vuelta a intentar cargar los datos en otro momento.")
-		fmt.Println("")
+		fmt.Println("Debe completar todos los campos")
 	}
 }
 func UserGetAll(w http.ResponseWriter, r *http.Request) {
@@ -127,84 +130,120 @@ func UserGetAll(w http.ResponseWriter, r *http.Request) {
 	}
 	responseUsers(w, 200, users, nil)
 }
-
-//Revisar//
-
 func UserGetOne(w http.ResponseWriter, r *http.Request) {
 
-	fmt.Println(r.URL.Path)
-
-
-/*
-	params := mux.Vars(r)
-	user := models.Usuario{}
-
-	//Obtengo ID - No creo q lo use.
-	id, err := strconv.Atoi(params["id"])
-	if err != nil {
-		msjError(err)
-	}
-	user.ID = id
-
-	user.Nombre = params["nombre"]
-	user.Apellido = params["apellido"]
-	user.Email = params["mail"]
+	var user models.Usuario
+	a := r.URL.Query()
+	user.Nombre = a.Get("nombre")
+	user.Apellido = a.Get("apellido")
+	user.Nick = a.Get("nick")
+	user.Email = a.Get("email")
 
 	config, err := utilities.GetConfiguration()
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	tipoUsuarioDAO := factory.TipoUsuarioFactoryDAO(config.Engine)
-	tipoUsuario := models.TipoUsuario{}
-	tipoUsuario.Nombre = params["Usuario"]
-	tipoUser, err := tipoUsuarioDAO.GetOne(tipoUsuario)
-	if err != nil {
-		msjError(err)
-	}
-	user.TipoUsuario = tipoUser.ID
+	if a.Get("tipoUsuario") != "" {
+		tipoUsuarioDAO := factory.TipoUsuarioFactoryDAO(config.Engine)
+		tipoUsuario := models.TipoUsuario{}
+		tipoUsuario.Nombre = a.Get("tipoUsuario")
 
-	img, err := strconv.Atoi(params["imagen"])
-	if err != nil {
-		msjError(err)
+		tipoUser, err := tipoUsuarioDAO.GetOne(tipoUsuario)
+		if err != nil {
+			msjError(err)
+		}
+		user.TipoUsuario = tipoUser.ID
 	}
-	user.IDImagen = img
 
 	userDAO := factory.UsuarioFactoryDAO(config.Engine)
 	user, err = userDAO.GetOne(user)
 	if err != nil {
-		msjError(err)
-		//responseUser(w, 404, user, err)
+		responseUser(w, 404, user, err)
 	}
 	responseUser(w, 200, user, nil)
-*/
 }
 func UserGetBy(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	params := models.Usuario{}
 
-	id, err := strconv.Atoi(vars["id"])
+	params := r.URL.Query()
+	id, err := strconv.Atoi(params.Get("id"))
 	if err != nil {
-		fmt.Println("Error: ", err)
+		log.Fatalln(err)
 	}
-	params.ID = id
 
+	config, err := utilities.GetConfiguration()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	userDAO := factory.UsuarioFactoryDAO(config.Engine)
+
+	user, err := userDAO.GetByID(id)
+	if err != nil {
+		responseUser(w, 404, user, err)
+	}
+	responseUser(w, 200, user, nil)
+}
+
+//Revisar//
+func UserUpdate(w http.ResponseWriter, r *http.Request) {
+
+	a := r.URL.Query()
+
+	if a.Get("id") == "" {
+		fmt.Println("No ingresó ningún ID.")
+	}
+
+	config, err := utilities.GetConfiguration()
 	if err != nil {
 		log.Fatalln(err)
 	}
 
 	var user models.Usuario
 
-	config, err := utilities.GetConfiguration()
-	if err != nil {
-		log.Fatalln(err)
-	}
-	userDAO := factory.UsuarioFactoryDAO(config.Engine)
+	user.Nombre = a.Get("nombre")
+	user.Apellido = a.Get("apellido")
+	user.Nick = a.Get("nick")
+	user.Email = a.Get("email")
+	user.Password = a.Get("password")
 
-	user, err = userDAO.GetByID(id)
-	if err != nil {
-		fmt.Println("ERROR")
-		//responseUser(w, 404, user, err)
+	var msjUser= "No se pudo actualizar el usuario."
+	var msjImagen= ""
+
+	img := models.Imagen{}
+	if a.Get("imagen") != "" {
+		// Cargo todos los valores de la imagen
+		fmt.Println("Por obtener")
+		img.Imagen = a.Get("imagen")
+		imagenDAO := factory.ImagenFactoryDAO(config.Engine)
+
+		fmt.Println("Img: ", img)
+
+		imagen, err := imagenDAO.GetOne(img)
+		_, err = imagenDAO.Update(imagen)
+		if err != nil {
+			fmt.Print("Error: ", err)
+			msjImagen = "No se pudo cargar la imagen."
+		} else {
+			fmt.Println("Imagen: ", imagen)
+			user.ID = imagen.ID
+			msjImagen = "Imagen cargada correctamente"
+		}
+	} else{
+		fmt.Println("Imagen vacía")
 	}
-	responseUser(w, 200, user, nil)
+
+	// Cargo todos los valores del nuevo usuario
+	usuarioDAO := factory.UsuarioFactoryDAO(config.Engine)
+	userUpdated, err := usuarioDAO.Update(user)
+	if err != nil {
+		fmt.Println("")
+		fmt.Println("No se pudo crear el usuario.", err)
+		fmt.Println("")
+	}
+
+	fmt.Println("Usuario actualizado: ", userUpdated)
+	fmt.Println("")
+	fmt.Println(msjImagen)
+	fmt.Println("")
+	fmt.Println(msjUser)
 }

@@ -7,6 +7,6 @@ type ImagenDAO interface {
 	GetAll() ([]models.Imagen, error)
 	GetByID(id int) (models.Imagen, error)
 	GetOne(i models.Imagen) (models.Imagen, error)
-	Update(i models.Imagen) error
+	Update(i models.Imagen) (models.Imagen, error)
 	Delete(id int) error
 }

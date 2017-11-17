@@ -70,6 +70,7 @@ func (dao TipoUsuarioImplMysql) GetOne(tu models.TipoUsuario) (models.TipoUsuari
 		log.Panic(err)
 	}
 	defer stmt.Close()
+
 	row := db.QueryRow(query, tu.ID, tu.Nombre)
 
 	var tipoUsuario = models.TipoUsuario{}
@@ -78,7 +79,6 @@ func (dao TipoUsuarioImplMysql) GetOne(tu models.TipoUsuario) (models.TipoUsuari
 	if err != nil {
 		return tipoUsuario, err
 	}
-
 	return tipoUsuario, nil
 }
 func (dao TipoUsuarioImplMysql) GetAll() ([]models.TipoUsuario, error){

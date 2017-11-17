@@ -1392,23 +1392,23 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="323" parent="244" name="idTipoUsuario">
+    <column id="323" parent="244" name="tipo_usuario">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="324" parent="244" name="idImagen">
+    <column id="324" parent="244" name="imagen">
       <Position>8</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="325" parent="244" name="fk_usuario_tipoUsuario">
-      <ColNames>idTipoUsuario</ColNames>
+      <ColNames>tipo_usuario</ColNames>
     </index>
     <index id="326" parent="244" name="fk_usuario_imagen">
-      <ColNames>idImagen</ColNames>
+      <ColNames>imagen</ColNames>
     </index>
     <key id="327" parent="244" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -1416,13 +1416,13 @@
       <Primary>1</Primary>
     </key>
     <foreign-key id="328" parent="244" name="fk_usuario_tipoUsuario">
-      <ColNames>idTipoUsuario</ColNames>
+      <ColNames>tipo_usuario</ColNames>
       <RefSchemaName>vixy</RefSchemaName>
       <RefTableName>tipousuario</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <foreign-key id="329" parent="244" name="fk_usuario_imagen">
-      <ColNames>idImagen</ColNames>
+      <ColNames>imagen</ColNames>
       <RefSchemaName>vixy</RefSchemaName>
       <RefTableName>imagen</RefTableName>
       <RefColNames>id</RefColNames>

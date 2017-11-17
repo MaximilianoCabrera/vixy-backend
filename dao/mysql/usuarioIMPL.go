@@ -4,13 +4,27 @@ import (
 	"log"
 	"errors"
 	"../../models"
+	"fmt"
+
+	_ "github.com/go-sql-driver/mysql"
+
 )
 
 type UsuarioImplMysql struct{}
-//TODO: Hacer que le create reciba los datos de la imagen a cargar, para así poder hacer
-//TODO: Una verdadera transacción, controlando que se cargue todo, o hacer Rollback.
+//TODO: Agregar los DB().BEGIN() y COMMIT
+func checkErr(err error) {
+	if err != nil {
+		log.Fatal(err)
+		panic(err)
+	}
+}
 //OK//
 func (dao UsuarioImplMysql) Create(u *models.Usuario) (string, error){
+	err := DB().Create(u)
+	if err != nil{
+		fmt.Println("Error al crear: ", err)
+	}
+/*
 	db := get()
 	defer db.Close()
 
@@ -46,12 +60,28 @@ func (dao UsuarioImplMysql) Create(u *models.Usuario) (string, error){
 	img.ID = u.IDImagen
 
 	u.ID = int(id)
+*/
 	var msj = "Se pudo cargar el usuario %s, y la imagen %i correctamente."
+
 	return msj, nil
+
 }
+//Probar//
 func (dao UsuarioImplMysql) GetAll() ([]models.Usuario, error) {
-	query := "SELECT * FROM usuario"
+
 	var usuarios []models.Usuario
+	err := DB().Read(usuarios,"SELECT * FROM usuario")
+	if err != nil{
+		fmt.Println("ERROR 1: ", err)
+	}
+
+	fmt.Println(len(usuarios))
+
+
+	//query := "SELECT * FROM usuario"
+	//var usuarios []models.Usuario
+
+/*
 	//usuarios := make([]models.Usuario, 0)
 	db := get()
 	defer db.Close()
@@ -78,11 +108,21 @@ func (dao UsuarioImplMysql) GetAll() ([]models.Usuario, error) {
 
 		usuarios = append(usuarios, row)
 	}
+*/
 	return usuarios, nil
 }
-
-//Probar//
 func (dao UsuarioImplMysql) GetByID(id int) (models.Usuario, error) {
+
+	user := &models.Usuario{}
+	fmt.Println("ID: ", id)
+	err := DB().Read(user, "SELECT * FROM usuario WHERE id = ?", 1)
+	if err != nil{
+		fmt.Println("error: ", err)
+	}
+	var u = *user
+	fmt.Println(user.Nombre)
+
+/*
 	query := "SELECT * FROM usuario WHERE id = ?"
 
 	db := get()
@@ -98,24 +138,24 @@ func (dao UsuarioImplMysql) GetByID(id int) (models.Usuario, error) {
 
 	var user = models.Usuario{}
 
-	//TODO: obtener y transformar el tipoUsuario
 	err = row.Scan(&user.ID, &user.Nombre, &user.Apellido, &user.Nick, &user.Email, &user.Pass, &user.TipoUsuario, &user.IDImagen)
 	if err != nil {
-		log.Println("Error: ", err)
+		log.Println("No se encontro ningún usuario.")
+		log.Println(err)
 		return user, err
 	}
-	log.Println("Sale bien")
-	return user, nil
+*/
+	return u, nil
+
 }
 func (dao UsuarioImplMysql) GetOne(u models.Usuario) (models.Usuario, error){
-	query := "SELECT id, nombre, apellido, nick, email, password, idTipoUsuario FROM usuario " +
+	query := "SELECT id, nombre, apellido, nick, email, password, idTipoUsuario, idImagen FROM usuario " +
 		"WHERE id = ? " +
-			"OR nombre = ? " +
-			"OR apellido = ? " +
-			"OR nick = ? " +
-			"OR email = ? " +
-			"OR password = ? " +
-			"OR idTipoUsuario = ? "
+		"OR nombre = ? " +
+		"OR apellido = ? " +
+		"OR nick = ? " +
+		"OR email = ? " +
+		"OR idTipoUsuario = ? "
 
 	db := get()
 	defer db.Close()
@@ -127,69 +167,64 @@ func (dao UsuarioImplMysql) GetOne(u models.Usuario) (models.Usuario, error){
 	}
 	defer stmt.Close()
 
-/*
-	//Obtengo el id del TipoUsuario
-	config, err := utilities.GetConfiguration()
-	if err != nil{
-		log.Fatalln(err)
-	}
-	var tipoUsuario models.TipoUsuario
-	tipoUsuario.Nombre = u.TipoUsuario
-
-	if tipoUsuario.Nombre != ""{
-		tipoUsuarioDAO := factory.TipoUsuarioFactoryDAO(config.Engine)
-		tipoUsuario, err = tipoUsuarioDAO.GetOne(tipoUsuario)
-	}
-*/
-	//row := db.QueryRow(query, u.ID, u.Nombre, u.Apellido, u.Nick, u.Email, u.Pass, tipoUsuario, )
+	row := db.QueryRow(query, u.ID, u.Nombre, u.Apellido, u.Nick, u.Email, u.TipoUsuario)
 
 	var usuario = models.Usuario{}
 
-	//err = row.Scan(&usuario.ID, &usuario.Nombre, &usuario.Apellido, &usuario.Nick, &usuario.Email, &usuario.Pass, &usuario.TipoUsuario)
+	err = row.Scan(&usuario.ID, &usuario.Nombre, &usuario.Apellido, &usuario.Nick, &usuario.Email, &usuario.Password, &usuario.TipoUsuario, &usuario.Imagen)
 	if err != nil {
 		return usuario, err
 	}
 	return usuario, nil
 }
 func (dao UsuarioImplMysql) Update(u models.Usuario) (models.Usuario, error) {
-	query := "UPDATE usuario SET nombre = ?, apellido = ?, nick = ?, email = ?, password = ?, idImagen = ? WHERE id = ?"
+
+	fmt.Println("Actualizando Usuario")
+	fmt.Println("...")
+	user := &models.Usuario{}
+	fmt.Println("Obtengo los datos del viejo user")
+	fmt.Println("...")
+	err := DB().Read(user, "SELECT * FROM usuarios WHERE id = ?", u.ID)
+	fmt.Println("Viejo user: ", user)
+	fmt.Println("...")
+
+
+	fmt.Println("Actualizo usuario")
+	fmt.Println("...")
+	user.Nombre = u.Nombre
+
+	fmt.Println("Nuevo Usuario", user)
+	fmt.Println("...")
+	err = DB().Update(user)
+
+	fmt.Println("Usuario actualizado", user)
+	fmt.Println("...")
+
+	return u, err
+/*
+	fmt.Println("Actualizando Usuario")
+	fmt.Println("...")
+
 	db := get()
 	defer db.Close()
 
+	query := "UPDATE usuario SET nombre = ?, apellido = ?, nick = ?, email = ?, password = ?, idImagen = ? WHERE id = ?"
+
 	stmt, err := db.Prepare(query)
-	if err != nil {
-		return u ,err
-	}
+	checkErr(err)
+
 	defer stmt.Close()
 
-	//TODO: Corregir aca.
-	var img models.Imagen
-	img.ID = u.IDImagen
-/*
-	if u.Imagen != ""{
-		config, err := utilities.GetConfiguration()
-		if err != nil{
-			log.Fatalln(err)
-		}
-		//Guardo la imagen en la base de datos - tabla imagen
-		imagenDAO := factory.ImagenFactoryDAO(config.Engine)
+	row, err := stmt.Exec(u.Nombre, u.Apellido, u.Nick, u.Email, u.Pass, u.IDImagen, u.ID)
+	checkErr(err)
 
-		img, err = imagenDAO.Create(img)
-		if err != nil{
-			log.Fatalln(err)
-		}
-	}
-*/
-	row, err := stmt.Exec(u.Nombre, u.Apellido, u.Nick, u.Email, u.Pass, img.ID, u.ID)
-	if err != nil {
-		return u, err
-	}
+	affect, err := row.RowsAffected()
+	checkErr(err)
 
-	i, _ := row.RowsAffected()
-	if i != 1 {
-		return u, errors.New("Error: Se esperaba 1 fila afectada con los siguientes datos")
-	}
+	fmt.Println("Afected: ", affect)
+
 	return u, nil
+*/
 }
 func (dao UsuarioImplMysql) Delete(id int) error {
 	query := "DELETE FROM usuario WHERE id = ?"

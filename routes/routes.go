@@ -57,8 +57,22 @@ var routes = Routes{
 	Route{
 		"UserGetOne",
 		"GET",
-		"/usuarios/{params}",
+		"/usuario/{params}",
 		actions.UserGetOne,
+	},
+	//UserGetBy
+	Route{
+		"UserGetBy",
+		"GET",
+		"/usuarios/{id}",
+		actions.UserGetBy,
+	},
+	//UserUpdate
+	Route{
+		"UserUpdate",
+		"PUT",
+		"/usuarios/update/{id}",
+		actions.UserUpdate,
 	},
 	//EntradasGetAll
 	Route{

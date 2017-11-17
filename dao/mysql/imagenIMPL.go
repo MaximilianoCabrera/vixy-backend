@@ -127,30 +127,32 @@ func (dao ImagenImplMysql) GetOne(i models.Imagen) (models.Imagen, error){
 	}
 	return imagen, nil
 }
-func (dao ImagenImplMysql) Update(i models.Imagen) error {
+func (dao ImagenImplMysql) Update(i models.Imagen) (models.Imagen, error) {
 	query := "UPDATE imagen SET nombre = ? WHERE id = ?"
 	db := get()
 	defer db.Close()
 
 	stmt, err := db.Prepare(query)
 	if err != nil {
-		return err
+		return i, err
 	}
 	defer stmt.Close()
 
 	var img models.Imagen
+	//var imgVieja models.Imagen
+
 	img.Imagen = i.Imagen
 
 	row, err := stmt.Exec(i.Imagen)
 	if err != nil {
-		return err
+		return i, err
 	}
 
 	e, _ := row.RowsAffected()
 	if e != 1 {
-		return errors.New("Error: Se esperaba 1 fila afectada")
+		return i, errors.New("Error: Se esperaba 1 fila afectada")
 	}
-	return nil
+	return i, nil
 }
 func (dao ImagenImplMysql) Delete(id int) error {
 	query := "DELETE FROM imagen WHERE id = ?"
