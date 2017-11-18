@@ -65,7 +65,7 @@ var routes = Routes{
 		"UserGetBy",
 		"GET",
 		"/usuarios/{id}",
-		actions.UserGetBy,
+		actions.UserGetByID,
 	},
 	//UserUpdate
 	Route{

@@ -1,8 +1,8 @@
 package mysql
 
 import (
-	"log"
-	"errors"
+	//"log"
+	//"errors"
 	"../../models"
 	"fmt"
 
@@ -77,33 +77,12 @@ func (dao UsuarioImplMysql) GetByID(id int) (models.Usuario, error) {
 	var u = *user
 	fmt.Println(user.Nombre)
 
-/*
-	query := "SELECT * FROM usuario WHERE id = ?"
-
-	db := get()
-	defer db.Close()
-
-	//creo una sentencia=statement
-	stmt, err := db.Prepare(query)
-	if err != nil {
-		log.Panic(err)
-	}
-	defer stmt.Close()
-	row := db.QueryRow(query, id)
-
-	var user = models.Usuario{}
-
-	err = row.Scan(&user.ID, &user.Nombre, &user.Apellido, &user.Nick, &user.Email, &user.Pass, &user.TipoUsuario, &user.IDImagen)
-	if err != nil {
-		log.Println("No se encontro ningún usuario.")
-		log.Println(err)
-		return user, err
-	}
-*/
 	return u, nil
 
 }
 func (dao UsuarioImplMysql) GetOne(u models.Usuario) (models.Usuario, error){
+	var usuario = models.Usuario{}
+/*
 	query := "SELECT id, nombre, apellido, nick, email, password, idTipoUsuario, idImagen FROM usuario " +
 		"WHERE id = ? " +
 		"OR nombre = ? " +
@@ -118,18 +97,17 @@ func (dao UsuarioImplMysql) GetOne(u models.Usuario) (models.Usuario, error){
 	//creo una sentencia=statement
 	stmt, err := db.Prepare(query)
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 	defer stmt.Close()
 
 	row := db.QueryRow(query, u.ID, u.Nombre, u.Apellido, u.Nick, u.Email, u.TipoUsuario)
 
-	var usuario = models.Usuario{}
-
 	err = row.Scan(&usuario.ID, &usuario.Nombre, &usuario.Apellido, &usuario.Nick, &usuario.Email, &usuario.Password, &usuario.TipoUsuario, &usuario.Imagen)
 	if err != nil {
 		return usuario, err
 	}
+*/
 	return usuario, nil
 }
 func (dao UsuarioImplMysql) Update(u models.Usuario) (models.Usuario, error) {
@@ -182,6 +160,7 @@ func (dao UsuarioImplMysql) Update(u models.Usuario) (models.Usuario, error) {
 */
 }
 func (dao UsuarioImplMysql) Delete(id int) error {
+/*
 	query := "DELETE FROM usuario WHERE id = ?"
 	db := get()
 	defer db.Close()
@@ -201,5 +180,6 @@ func (dao UsuarioImplMysql) Delete(id int) error {
 	if i != 1 {
 		return errors.New("Error: Se esperaba 1 fila afectada")
 	}
+*/
 	return nil
 }

@@ -11,8 +11,7 @@ type GlobalImplMysql struct{}
 //TODO: Agregar los DB().BEGIN() y COMMIT
 func checkErr(msj string, err error) {
 	if err != nil {
-		log.Fatal(msj, err)
-		panic(err)
+		log.Println(msj, err)
 	}
 }
 
@@ -49,43 +48,47 @@ func (dao GlobalImplMysql) Delete(id int, x *models.GlobalModel, model string) (
 
 	return msj, err
 }
-
-//revisar//
-func (dao GlobalImplMysql) GetAll(model string) ([]models.GlobalModel, error){
-	//TODO: Arreglar aca!!
-	var err error
-	fmt.Println("GETALL()")
-	var a *models.GlobalModel
+func (dao GlobalImplMysql) GetAll(model string) (models.GlobalModels, error){
+	var x models.GlobalModel
+	var a models.GlobalModels
 
 	switch model {
 	case "user":
-		fmt.Println("A: ", a)
-		err := DB().Read(&a)
-		checkErr("Error al buscar los Usuario: ", err)
-		fmt.Println(a)
+		err := DB().Read(&a.User, "SELECT * FROM usuario")
+		checkErr("Error al querer obtener todas los usuarios", err)
 
-		//a.User = append(a.User, users)
+		for _, usuario := range a.User{
+			x.User = usuario
+		}
 
 	case "imagen":
+		err := DB().Read(&a.Imagen, "SELECT * FROM imagen")
+		checkErr("Error al querer obtener todas las imágenes: ", err)
 
-		checkErr("Error al buscar las imagen: ", err)
+		for _, img := range a.Imagen{
+			x.Imagen = img
+		}
 	default:
 		log.Println("Modelo ingresado no existente")
 	}
-	var x []models.GlobalModel
-	x = append(x, *a)
 
-	return x, nil
+	return a, nil
 }
 func (dao GlobalImplMysql) GetByID(id int, model string) (models.GlobalModel, error){
-	var err error
 	var x models.GlobalModel
+	//var err error
+
 	switch model {
 	case "user":
-		checkErr("Error al crear Usuario: ", err)
-	case "imagen":
+		var user models.Usuario
+		err := DB().Read(&user,"SELECT * FROM usuario WHERE id = ?", id)
+		checkErr("Error al obtener usuario: ", err)
 
-		checkErr("Error al crear imagen: ", err)
+		x.User = user
+	case "imagen":
+		var imagen models.Imagen
+		err := DB().Read(&imagen, "SELECT * FROM imagen WHERE id = ?", id)
+		checkErr("Error al obtener imagen: ", err)
 	default:
 		log.Println("Modelo ingresado no existente")
 	}
@@ -95,22 +98,51 @@ func (dao GlobalImplMysql) GetOne (x models.GlobalModel, model string) (models.G
 	var err error
 	switch model {
 	case "user":
+		var user models.Usuario
+		err := DB().Read(&user, "SELECT * FROM usuario WHERE nombre = ? OR apellido = ? OR nick = ? OR email = ? ", x.User.Nombre, x.User.Apellido, x.User.Nick, x.User.Email)
 
-		checkErr("Error al crear Usuario: ", err)
+		x.User = user
+		checkErr("Error al obtener Usuario: ", err)
 	case "imagen":
-
 		checkErr("Error al crear imagen: ", err)
 	default:
 		log.Println("Modelo ingresado no existente")
 	}
 	return x, nil
 }
+
+//revisar//
 func (dao GlobalImplMysql) Update (x models.GlobalModel, model string) (models.GlobalModel, error){
 	var err error
 	switch model {
 	case "user":
+		var user models.Usuario
+		//fmt.Println("SELECT * FROM usuario WHERE id = ?", x.User.ID)
+		err := DB().Read(&user, "SELECT * FROM usuario WHERE id = ?", x.User.ID)
+		checkErr("Error al buscar el Usuario a modificar: ", err)
 
-		checkErr("Error al crear Usuario: ", err)
+		if x.User.Nombre == ""{
+			fmt.Println("Nombre: ", x.User.Nombre)
+			x.User.Nombre = user.Nombre
+		}
+		if x.User.Apellido == ""{
+			x.User.Apellido = user.Apellido
+		}
+		if x.User.Nick == ""{
+			x.User.Nick = user.Nick
+		}
+		if x.User.Email == ""{
+			x.User.Email = user.Email
+		}
+		if x.User.Password == ""{
+			x.User.Password = user.Password
+		}
+		x.User.TipoUsuario = user.TipoUsuario
+		x.User.Imagen = user.Imagen
+
+		err = DB().Update(x.User)
+		checkErr("No se pudo actualizar el usuario desde IMPL: ", err)
+
 	case "imagen":
 
 		checkErr("Error al crear imagen: ", err)

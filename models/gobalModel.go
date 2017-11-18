@@ -11,7 +11,3 @@ type GlobalModels struct {
 	Imagen      []Imagen
 	TipoUsuario []TipoUsuario
 }
-
-type Users struct {
-	Usuario []Usuario
-}

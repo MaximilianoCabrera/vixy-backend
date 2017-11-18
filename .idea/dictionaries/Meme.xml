@@ -5,6 +5,7 @@
       <w>actualizar</w>
       <w>afectada</w>
       <w>apellido</w>
+      <w>borrado</w>
       <w>buscar</w>
       <w>cargada</w>
       <w>cargado</w>
@@ -20,11 +21,13 @@
       <w>creo</w>
       <w>datos</w>
       <w>descripcion</w>
+      <w>desde</w>
       <w>devuelve</w>
       <w>dimagen</w>
       <w>eliminado</w>
       <w>entrada</w>
       <w>entradas</w>
+      <w>errores</w>
       <w>esperaba</w>
       <w>esto</w>
       <w>existente</w>
@@ -34,20 +37,26 @@
       <w>guardo</w>
       <w>imagen</w>
       <w>imgs</w>
+      <w>imágenes</w>
       <w>ingresado</w>
       <w>lista</w>
       <w>maximiliano</w>
       <w>modelo</w>
+      <w>modificar</w>
       <w>nombre</w>
       <w>nuevo</w>
+      <w>obtener</w>
       <w>pais</w>
       <w>pudo</w>
+      <w>querer</w>
       <w>revisar</w>
       <w>sentencia</w>
       <w>siguientes</w>
       <w>subtitulo</w>
+      <w>tanto</w>
       <w>tipo</w>
       <w>titulo</w>
+      <w>todas</w>
       <w>todos</w>
       <w>usuario</w>
       <w>usuarios</w>
