@@ -23,7 +23,6 @@ func DB() *crud.DB{
 	}
 
 	err = DB.Ping()
-	fmt.Println(DB.Ping())
 
 	return DB
 }

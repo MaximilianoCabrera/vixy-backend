@@ -12,59 +12,14 @@ import (
 
 type UsuarioImplMysql struct{}
 //TODO: Agregar los DB().BEGIN() y COMMIT
-func checkErr(err error) {
-	if err != nil {
-		log.Fatal(err)
-		panic(err)
-	}
-}
 //OK//
+
 func (dao UsuarioImplMysql) Create(u *models.Usuario) (string, error){
 	err := DB().Create(u)
-	if err != nil{
-		fmt.Println("Error al crear: ", err)
-	}
-/*
-	db := get()
-	defer db.Close()
+	checkErr("nose", err)
 
-	db.Begin()
-
-	query := "INSERT INTO usuario (nombre, apellido, nick, email, password, idTipoUsuario, idImagen) VALUES (?, ?, ?, ?, ?, ?, ?)"
-
-	var msjError = ""
-
-	//creo una sentencia=statement
-	stmt, err := db.Prepare(query)
-	if err != nil {
-		msjError = "No se pudo crear la sentencia - stmt"
-		return msjError, err
-	}
-	defer stmt.Close()
-
-	result, err := stmt.Exec(u.Nombre, u.Apellido, u.Nick, u.Email, u.Pass, 2, u.IDImagen)
-
-	if err != nil {
-		msjError = "No se pudo guardar el usuario"
-		return msjError, err
-	}
-
-	//con esto nos devuelve el ID
-	id, err := result.LastInsertId()
-	if err != nil {
-		msjError = "No se pudo conseguir el ultimo id"
-		return msjError, err
-	}
-
-	var img models.Imagen
-	img.ID = u.IDImagen
-
-	u.ID = int(id)
-*/
-	var msj = "Se pudo cargar el usuario %s, y la imagen %i correctamente."
-
+	var msj = "Se pudo cargar el usuario y la imagen correctamente."
 	return msj, nil
-
 }
 //Probar//
 func (dao UsuarioImplMysql) GetAll() ([]models.Usuario, error) {

@@ -23,7 +23,7 @@ func responseUser(w http.ResponseWriter, status int, results models.Usuario, err
 }
 
 // response Usuarios
-func responseUsers(w http.ResponseWriter, status int, results []models.Usuario, err error) {
+func responseUsers(w http.ResponseWriter, status int, results []models.GlobalModel, err error) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	if err != nil {
@@ -43,10 +43,7 @@ func UsuarioCreate(w http.ResponseWriter, r *http.Request) {
 	}
 	var trans1 = false
 	var trans2 = false
-
 	var user models.Usuario
-
-
 
 	a := r.URL.Query()
 	user.Nombre = a.Get("nombre")
@@ -61,10 +58,10 @@ func UsuarioCreate(w http.ResponseWriter, r *http.Request) {
 		user.Nick != "" &&
 		user.Email != "" &&
 		user.Password != "" {
-		var msjUser = "No se pudo cargar el usuario."
+		var msjUser = ""
 		var msjImagen = ""
 
-		img := models.Imagen{}
+		var img models.Imagen
 		if a.Get("imagen") != "" {
 			// Cargo todos los valores de la imagen
 			img.Imagen = a.Get("imagen")
@@ -72,8 +69,11 @@ func UsuarioCreate(w http.ResponseWriter, r *http.Request) {
 			img.Imagen = "user.jpg"
 		}
 
-		imagenDAO := factory.ImagenFactoryDAO(config.Engine)
-		imagen, err := imagenDAO.Create(&img)
+		globalDAO := factory.GlobalFactoryDAO(config.Engine)
+		imagen := models.GlobalModel{}
+		imagen.Imagen = img
+		imagen, err = globalDAO.Create(&imagen, "imagen")
+
 		if err != nil {
 			fmt.Print("Error: ", err)
 			msjImagen = "No se pudo cargar la imagen."
@@ -82,25 +82,23 @@ func UsuarioCreate(w http.ResponseWriter, r *http.Request) {
 			trans1 = true
 		}
 
-		// Cargo todos los valores del nuevo usuario
 		if trans1 == true {
-			usuarioDAO := factory.UsuarioFactoryDAO(config.Engine)
-			user.Imagen = imagen.ID
-			msjUser, err = usuarioDAO.Create(&user)
-			if err != nil {
-				fmt.Println("")
-				fmt.Println("No se pudo crear el usuario.", err)
-				fmt.Println("")
+			user.Imagen = imagen.Imagen.ID
 
-				err2 := imagenDAO.Delete(imagen.ID)
-				fmt.Println("Se han borrado tanto los datos del usuario como de la imagen.")
-				fmt.Println("")
-				if err2 != nil {
-					fmt.Println("Error2: ", err2)
-					fmt.Println("")
+			us := models.GlobalModel{}
+			us.User = user
+			us, err = globalDAO.Create(&us, "user")
+			if err != nil {
+				fmt.Println("No se pudo crear el usuario.", err)
+				msjImagen, err = globalDAO.Delete(imagen.Imagen.ID, &imagen, "imagen")
+				if err != nil {
+					fmt.Println("Error: ", err)
 				}
+				fmt.Println("Se han borrado tanto los datos del usuario como de la imagen.")
+			}else{
+				msjUser = "Usuario creado correctamente"
+				trans2 = true
 			}
-			trans2 = true
 		}
 
 		if trans1 && trans2 == true {
@@ -114,21 +112,26 @@ func UsuarioCreate(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Debe completar todos los campos")
 	}
 }
+//Revisar//
 func UserGetAll(w http.ResponseWriter, r *http.Request) {
-	var users []models.Usuario
+	var x []models.GlobalModel
+	//var users []models.Usuario
 	config, err := utilities.GetConfiguration()
 	if err != nil {
 		log.Fatalln(err)
 	}
-	userDAO := factory.UsuarioFactoryDAO(config.Engine)
+	//userDAO := factory.UsuarioFactoryDAO(config.Engine)
+	globalDAO := factory.GlobalFactoryDAO(config.Engine)
 
-	users, err = userDAO.GetAll()
-	fmt.Println(users)
+	x, err = globalDAO.GetAll("user")
+	//users, err = userDAO.GetAll()
+	fmt.Println(x)
 	fmt.Println(err)
 	if err != nil {
 		responseUsers(w, 404, nil, err)
 	}
-	responseUsers(w, 200, users, nil)
+	fmt.Println()
+	responseUsers(w, 200, x, nil)
 }
 func UserGetOne(w http.ResponseWriter, r *http.Request) {
 
@@ -183,8 +186,6 @@ func UserGetBy(w http.ResponseWriter, r *http.Request) {
 	}
 	responseUser(w, 200, user, nil)
 }
-
-//Revisar//
 func UserUpdate(w http.ResponseWriter, r *http.Request) {
 
 	a := r.URL.Query()
@@ -233,6 +234,7 @@ func UserUpdate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Cargo todos los valores del nuevo usuario
+
 	usuarioDAO := factory.UsuarioFactoryDAO(config.Engine)
 	userUpdated, err := usuarioDAO.Update(user)
 	if err != nil {
