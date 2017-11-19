@@ -1,24 +1,15 @@
 package routes
 
-/*
 import (
-
-	"github.com/gorilla/mux"
+	"../actions"
 )
 
-func NewPaisRouter() *mux.Router {
-	router := mux.NewRouter().StrictSlash(true)
-
-	for _, route := range paisRoutes {
-		router.
-			Methods(route.Method).
-			Path(route.Pattern).
-			Name(route.Name).
-			HandlerFunc(route.HandleFunc)
-	}
-	return router
+var pais = Routes{
+	//PaisCreate
+	Route{
+		"PaisCreate",
+		"POST",
+		"/pais",
+		actions.PaisCreate,
+	},
 }
-
-var paisRoutes = Routes{
-
-}*/

@@ -8,7 +8,7 @@ import (
 
 //NewMainRouter creo las rutas
 func NewMainRouter() *mux.Router {
-	router := mux.NewRouter().StrictSlash(true)
+	router := mux.NewRouter().StrictSlash(false)
 
 	for _, route := range routes {
 		router.
@@ -17,6 +17,15 @@ func NewMainRouter() *mux.Router {
 			Name(route.Name).
 			HandlerFunc(route.HandleFunc)
 	}
+
+	for _, route := range user {
+		router.
+			Methods(route.Method).
+			Path(route.Pattern).
+			Name(route.Name).
+			HandlerFunc(route.HandleFunc)
+	}
+
 	return router
 }
 
@@ -39,41 +48,6 @@ var routes = Routes{
 		"/",
 		actions.Index,
 	},
-	//UsuarioCreate
-	Route{
-		"UserCreate",
-		"POST",
-		"/usuario",
-		actions.UsuarioCreate,
-	},
-	//UserGetAll
-	Route{
-		"UserGetAll",
-		"GET",
-		"/usuarios",
-		actions.UserGetAll,
-	},
-	//UserGetOne
-	Route{
-		"UserGetOne",
-		"GET",
-		"/usuario/{params}",
-		actions.UserGetOne,
-	},
-	//UserGetBy
-	Route{
-		"UserGetBy",
-		"GET",
-		"/usuarios/{id}",
-		actions.UserGetByID,
-	},
-	//UserUpdate
-	Route{
-		"UserUpdate",
-		"PUT",
-		"/usuarios/update/{id}",
-		actions.UserUpdate,
-	},
 	//EntradasGetAll
 	Route{
 		"EntradasGetAll",
@@ -82,3 +56,5 @@ var routes = Routes{
 		actions.EntradasGetAll,
 	},
 }
+
+
