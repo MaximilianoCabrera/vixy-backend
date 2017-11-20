@@ -28,7 +28,7 @@ var user = Routes{
 	Route{
 		"UserUpdate",
 		"PUT",
-		"/usuario/update/{id}",
+		"/usuario/update",
 		actions.UserUpdate,
 	},
 	//UserDelete

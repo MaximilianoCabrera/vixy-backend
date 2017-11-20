@@ -3,7 +3,7 @@ package models
 type Pais struct {
 	ID         int
 	Nombre     string
-	Continente string
+	Continente int
 	Moneda     string
 	Usohorario string
 	Idioma     string

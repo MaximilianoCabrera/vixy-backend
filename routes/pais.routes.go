@@ -30,7 +30,7 @@ var pais = Routes{
 	Route{
 		"PaisUpdate",
 		"PUT",
-		"/pais/update/{id}",
+		"/pais/update",
 		actions.PaisUpdate,
 	},
 	//PaisDelete

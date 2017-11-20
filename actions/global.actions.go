@@ -48,10 +48,7 @@ func responses(w http.ResponseWriter, status int, results models.GlobalModels, m
 		json.NewEncoder(w).Encode(results.Pais)
 	}
 }
-// Func Errores
-func msjError(err error) {
-	fmt.Println("Error: ", err)
-}
+
 // Func config
 func config() models.Configuration {
 	config, err := utilities.GetConfiguration()
@@ -65,9 +62,26 @@ func globalDAO() (x interfaces.GlobalDAO) {
 	x = factory.GlobalFactoryDAO(config().Engine)
 	return x
 }
-// Func respuesta error
-func checkErr(msj string, err error) {
+
+// Func Errores
+func msjError(err error) {
 	if err != nil {
-		log.Println(msj, err)
+		fmt.Println("Error: " , err)
+	}
+}
+func checkErr(model string, accion string, err error) {
+	if err != nil {
+		switch model{
+		case "user":
+			log.Println("No se pudo " + accion + " el Usuario. Error: ", err)
+		case "imagen":
+			log.Println("No se pudo " + accion + " la Imagen. Error: ", err)
+		case "pais":
+			log.Println("No se pudo " + accion + " el Pais. Error: ", err)
+		case "continente":
+			log.Println("No se pudo " + accion + " el Continente. Error: ", err)
+		default:
+			log.Println("Error: ", err)
+		}
 	}
 }

@@ -6,6 +6,7 @@ import (
 	"../models"
 	"fmt"
 	"strconv"
+	"log"
 )
 
 //Ok//
@@ -41,7 +42,7 @@ func UserCreate(w http.ResponseWriter, r *http.Request) {
 		imagen := models.GlobalModel{}
 		imagen.Imagen = img
 		imagen, err = globalDAO.Create(&imagen, "imagen")
-		checkErr("No se pudo cargar la imagen.", err)
+		checkErr("imagen", "crear", err)
 		user.Imagen = imagen.Imagen.ID
 		trans1 = true
 
@@ -51,7 +52,7 @@ func UserCreate(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			fmt.Println("No se pudo crear el usuario.", err)
 			_, err = globalDAO.Delete(&imagen, "imagen")
-			checkErr("Se han borrado tanto los datos del usuario como de la imagen.", err)
+			checkErr("imagen", "eliminar", err)
 		} else {
 			trans2 = true
 		}
@@ -85,13 +86,18 @@ func UserGet(w http.ResponseWriter, r *http.Request) {
 		var x models.GlobalModel
 
 		x.User = user
-
 		globalDAO := globalDAO()
-		x, err := globalDAO.GetOne(x, "user")
+		fmt.Println("GETONE USER")
+		a, err := globalDAO.GetOne(x, "user")
 		if err != nil {
-			response(w, 404, x, "user", err)
+			fmt.Println("ERROR EN GETONE USER")
+			responses(w, 404, a, "user", err)
 		}
-		response(w, 200, x, "user", nil)
+
+		for _, users := range a.User{
+			log.Println(users)
+		}
+		responses(w, 200, a, "user", nil)
 	} else {
 		var x models.GlobalModels
 
@@ -106,7 +112,7 @@ func UserGet(w http.ResponseWriter, r *http.Request) {
 func UserGetByID(w http.ResponseWriter, r *http.Request) {
 	params := r.URL.Query()
 	id, err := strconv.Atoi(params.Get("id"))
-	checkErr("Error: ", err)
+	msjError(err)
 
 	globalDAO := globalDAO()
 	x, err := globalDAO.GetByID(id, "user")
@@ -141,14 +147,17 @@ func UserUpdate(w http.ResponseWriter, r *http.Request) {
 
 		fmt.Println("Img: ", img)
 
-		x, err = globalDAO.GetOne(x, "imagen")
+		a, err := globalDAO.GetOne(x, "imagen")
 		if err != nil {
-			fmt.Print("Error: ", err)
+			responses(w, 404, a, "imagen",err)
+		} else{
+			responses(w, 200, a, "imagen", err)
 		}
+
+		x.Imagen = a.Imagen[0]
+
 		x, err = globalDAO.Update(x, "imagen")
-		if err != nil {
-			fmt.Print("Error: ", err)
-		}
+		checkErr("imagen", "update", err)
 	}
 
 	x, err = globalDAO.Update(x, "user")
@@ -162,13 +171,13 @@ func UserDelete(w http.ResponseWriter, r *http.Request) {
 	var x models.GlobalModel
 	params := r.URL.Query()
 	id, err := strconv.Atoi(params.Get("id"))
-	checkErr("Error: ", err)
+	msjError(err)
 
 	x.User.ID = id
 
 	globalDAO := globalDAO()
 
 	msj, err := globalDAO.Delete(&x, "user")
-	checkErr("Error: ", err)
+	checkErr("user", "eliminar", err)
 	fmt.Print("ELiminado: ", msj)
 }
