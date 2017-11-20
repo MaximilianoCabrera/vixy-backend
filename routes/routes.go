@@ -17,7 +17,6 @@ func NewMainRouter() *mux.Router {
 			Name(route.Name).
 			HandlerFunc(route.HandleFunc)
 	}
-
 	for _, route := range user {
 		router.
 			Methods(route.Method).
@@ -25,7 +24,20 @@ func NewMainRouter() *mux.Router {
 			Name(route.Name).
 			HandlerFunc(route.HandleFunc)
 	}
-
+	for _, route := range pais {
+		router.
+			Methods(route.Method).
+			Path(route.Pattern).
+			Name(route.Name).
+			HandlerFunc(route.HandleFunc)
+	}
+	for _, route := range continente {
+		router.
+			Methods(route.Method).
+			Path(route.Pattern).
+			Name(route.Name).
+			HandlerFunc(route.HandleFunc)
+	}
 	return router
 }
 

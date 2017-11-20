@@ -10,30 +10,27 @@ import (
 
 //Controlar//
 func PaisCreate(w http.ResponseWriter, r *http.Request) {
-	var err error
-	var pais models.Pais
+	//var err error
+	var x models.GlobalModel
 
 	a := r.URL.Query()
-	pais.Nombre = a.Get("nombre")
-	pais.Continente = a.Get("continente")
-	pais.Moneda = a.Get("moneda")
-	pais.UsoHorario = a.Get("usoHorario")
-	pais.Idioma = a.Get("idioma")
+	x.Pais.Nombre = a.Get("nombre")
+	x.Pais.Continente = a.Get("continente")
+	x.Continente.Nombre = a.Get("continente")
+	x.Pais.Moneda = a.Get("moneda")
+	x.Pais.Usohorario = a.Get("usoHorario")
+	x.Pais.Idioma = a.Get("idioma")
 
-	if pais.Nombre != "" &&
-		pais.Continente != "" &&
-		pais.Moneda != "" &&
-		pais.UsoHorario != "" &&
-		pais.Idioma != "" {
+	if x.Pais.Nombre != "" &&
+		x.Pais.Continente != "" &&
+		x.Pais.Moneda != "" &&
+		x.Pais.Usohorario != "" &&
+		x.Pais.Idioma != "" {
 
-		cont := models.Continente{Nombre: pais.Continente}
 		globalDAO := globalDAO()
-		continente := models.GlobalModel{Continente: cont}
-		continente, err = globalDAO.GetOne(continente, "continente")
+		x, err := globalDAO.GetOne(x, "continente")
 		checkErr("No se pudo obtener el continente.", err)
 
-		x := models.GlobalModel{}
-		x.Pais = pais
 		x, err = globalDAO.Create(&x, "pais")
 		if err != nil {
 			fmt.Println("No se pudo crear el pais.", err)
@@ -46,24 +43,20 @@ func PaisCreate(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func PaisGet(w http.ResponseWriter, r *http.Request) {
-	var pais models.Pais
+	var x models.GlobalModel
 
 	a := r.URL.Query()
-	pais.Nombre = a.Get("nombre")
-	pais.Continente = a.Get("continente")
-	pais.Moneda = a.Get("moneda")
-	pais.UsoHorario = a.Get("usoHorario")
-	pais.Idioma = a.Get("idioma")
+	x.Pais.Nombre = a.Get("nombre")
+	x.Pais.Continente = a.Get("continente")
+	x.Pais.Moneda = a.Get("moneda")
+	x.Pais.Usohorario = a.Get("usoHorario")
+	x.Pais.Idioma = a.Get("idioma")
 
-	if pais.Nombre != "" ||
-		pais.Continente != "" ||
-		pais.Moneda != "" ||
-		pais.UsoHorario != "" ||
-		pais.Idioma != "" {
-
-		var x models.GlobalModel
-
-		x.Pais = pais
+	if x.Pais.Nombre != "" ||
+		x.Pais.Continente != "" ||
+		x.Pais.Moneda != "" ||
+		x.Pais.Usohorario != "" ||
+		x.Pais.Idioma != "" {
 
 		globalDAO := globalDAO()
 		x, err := globalDAO.GetOne(x, "pais")
@@ -79,6 +72,7 @@ func PaisGet(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			responses(w, 404, x, "pais", err)
 		}
+		fmt.Println("CARGANDO PAISES: ", x.Pais)
 		responses(w, 200, x, "user", nil)
 	}
 }
@@ -91,9 +85,10 @@ func PaisGetByID(w http.ResponseWriter, r *http.Request) {
 	globalDAO := globalDAO()
 	x, err := globalDAO.GetByID(id, "user")
 	if err != nil {
-		responseUser(w, 404, x, "user", err)
+		response(w, 404, x, "user", err)
 	}
-	responseUser(w, 200, x, "user", nil)
+
+	response(w, 200, x, "user", nil)
 }
 func PaisGetOne(w http.ResponseWriter, r *http.Request) {
 	var x models.GlobalModel
@@ -106,9 +101,9 @@ func PaisGetOne(w http.ResponseWriter, r *http.Request) {
 	globalDAO := globalDAO()
 	x, err := globalDAO.GetOne(x, "user")
 	if err != nil {
-		responseUser(w, 404, x, "user", err)
+		response(w, 404, x, "user", err)
 	}
-	responseUser(w, 200, x, "user", nil)
+	response(w, 200, x, "user", nil)
 }
 func PaisUpdate(w http.ResponseWriter, r *http.Request) {
 	var x models.GlobalModel
@@ -148,9 +143,9 @@ func PaisUpdate(w http.ResponseWriter, r *http.Request) {
 
 	x, err = globalDAO.Update(x, "user")
 	if err != nil {
-		responseUser(w, 404, x, "user", err)
+		response(w, 404, x, "user", err)
 	} else {
-		responseUser(w, 200, x, "user", err)
+		response(w, 200, x, "user", err)
 	}
 }
 func PaisDelete(w http.ResponseWriter, r *http.Request) {

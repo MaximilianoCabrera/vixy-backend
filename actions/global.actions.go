@@ -24,6 +24,8 @@ func response(w http.ResponseWriter, status int, results models.GlobalModel, mod
 		json.NewEncoder(w).Encode(results.User)
 	case "imagen":
 		json.NewEncoder(w).Encode(results.Imagen)
+	case "continente":
+		json.NewEncoder(w).Encode(results.Continente)
 	case "pais":
 		json.NewEncoder(w).Encode(results.Pais)
 	}
@@ -40,6 +42,10 @@ func responses(w http.ResponseWriter, status int, results models.GlobalModels, m
 		json.NewEncoder(w).Encode(results.User)
 	case "imagen":
 		json.NewEncoder(w).Encode(results.Imagen)
+	case "continente":
+		json.NewEncoder(w).Encode(results.Continente)
+	case "pais":
+		json.NewEncoder(w).Encode(results.Pais)
 	}
 }
 // Func Errores
@@ -61,5 +67,7 @@ func globalDAO() (x interfaces.GlobalDAO) {
 }
 // Func respuesta error
 func checkErr(msj string, err error) {
-	log.Println(msj, err)
+	if err != nil {
+		log.Println(msj, err)
+	}
 }

@@ -2,20 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76adadb9-4a3a-42e4-9709-e3b1983e49e1" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/actions/global.actions.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/actions/pais.actions.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/routes/user.routes.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/actions/continente.actions.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/routes/continente.routes.go" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c6c3884-b837-4643-bf91-89b68462889b.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4814c93c-98cb-4d15-8239-677b67d75349.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/4814c93c-98cb-4d15-8239-677b67d75349.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Meme.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Meme.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/actions/entradas.actions.go" afterPath="$PROJECT_DIR$/actions/entradas.actions.go" />
-      <change beforePath="$PROJECT_DIR$/actions/usuario.actions.go" afterPath="$PROJECT_DIR$/actions/usuario.actions.go" />
-      <change beforePath="$PROJECT_DIR$/dao/interfaces/globalDAO.go" afterPath="$PROJECT_DIR$/dao/interfaces/globalDAO.go" />
+      <change beforePath="$PROJECT_DIR$/actions/global.actions.go" afterPath="$PROJECT_DIR$/actions/global.actions.go" />
+      <change beforePath="$PROJECT_DIR$/actions/pais.actions.go" afterPath="$PROJECT_DIR$/actions/pais.actions.go" />
       <change beforePath="$PROJECT_DIR$/dao/mysql/globalIMPL.go" afterPath="$PROJECT_DIR$/dao/mysql/globalIMPL.go" />
-      <change beforePath="$PROJECT_DIR$/models/gobalModel.go" afterPath="$PROJECT_DIR$/models/globalModel.go" />
+      <change beforePath="$PROJECT_DIR$/models/pais.go" afterPath="$PROJECT_DIR$/models/pais.go" />
       <change beforePath="$PROJECT_DIR$/routes/pais.routes.go" afterPath="$PROJECT_DIR$/routes/pais.routes.go" />
       <change beforePath="$PROJECT_DIR$/routes/routes.go" afterPath="$PROJECT_DIR$/routes/routes.go" />
+      <change beforePath="$PROJECT_DIR$/routes/user.routes.go" afterPath="$PROJECT_DIR$/routes/user.routes.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,6 +54,13 @@
         <item name="vixy@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="vixy: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="continente: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="vixy@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="vixy: schema" type="c314c289:MysqlImplModel$Schema" />
         <item name="pais: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
     </expand>
@@ -64,23 +71,38 @@
       <file leaf-file-name="routes.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/routes.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+            <state relative-caret-position="374">
+              <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
               <folding>
-                <element signature="e#711#879#0" expanded="false" />
+                <element signature="e#223#341#0" expanded="false" />
+                <element signature="e#370#488#0" expanded="false" />
+                <element signature="e#517#635#0" expanded="false" />
+                <element signature="e#670#788#0" expanded="false" />
+                <element signature="e#1009#1177#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pais.actions.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pais.routes.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/pais.routes.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+              <folding>
+                <element signature="e#16#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pais.actions.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/actions/pais.actions.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+            <state relative-caret-position="442">
+              <caret line="33" column="8" lean-forward="false" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
               <folding>
                 <element signature="e#17#71#0" expanded="true" />
-                <element signature="n#!!block;n#PaisCreate#0" expanded="false" />
                 <element signature="n#!!block;n#PaisGet#0" expanded="false" />
                 <element signature="n#!!block;n#PaisGetByID#0" expanded="false" />
                 <element signature="n#!!block;n#PaisGetOne#0" expanded="false" />
@@ -91,26 +113,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="globalModel.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/globalModel.go">
+      <file leaf-file-name="global.actions.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/actions/global.actions.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-              <folding />
+            <state relative-caret-position="423">
+              <caret line="70" column="4" lean-forward="false" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+              <folding>
+                <element signature="e#17#139#0" expanded="true" />
+                <element signature="n#!!block;n#responses#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usuario.actions.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/actions/usuario.actions.go">
+      <file leaf-file-name="globalIMPL.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dao/mysql/globalIMPL.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+            <state relative-caret-position="378">
+              <caret line="45" column="43" lean-forward="false" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
               <folding>
-                <element signature="n#!!block;n#UserCreate#0" expanded="false" />
-                <element signature="n#!!block;n#UserGetByID#0" expanded="false" />
-                <element signature="n#!!block;n#UserUpdate#0" expanded="false" />
-                <element signature="n#!!block;n#UserDelete#0" expanded="false" />
+                <element signature="n#!!block;n#GetAll#0" expanded="false" />
+                <element signature="n#!!block;n#GetByID#0" expanded="false" />
+                <element signature="n#!!block;n#GetOne#0" expanded="false" />
+                <element signature="e#2865#3136#0" expanded="false" />
+                <element signature="e#3138#3321#0" expanded="false" />
+                <element signature="e#3323#3626#0" expanded="false" />
+                <element signature="n#!!block;n#Update#0" expanded="false" />
+                <element signature="n#!!block;n#Delete#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -129,8 +158,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>2</find>
-      <find>No se pudo crear el usuario.</find>
       <find>Entr</find>
       <find>Println(&quot;E</find>
       <find>println</find>
@@ -147,7 +174,6 @@
       <find>fmt.Println()</find>
       <find>readall</find>
       <find>getall</find>
-      <find>fmt</find>
       <find>slice</find>
       <find>FIN</find>
       <find>config,</find>
@@ -159,6 +185,9 @@
       <find>user</find>
       <find>if</find>
       <find>responseUser</find>
+      <find>continent</find>
+      <find>jso</find>
+      <find>fmt</find>
     </findStrings>
     <replaceStrings>
       <replace>..</replace>
@@ -171,10 +200,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dao/interfaces/comentarioDAO.go" />
-        <option value="$PROJECT_DIR$/dao/interfaces/topicDAO.go" />
-        <option value="$PROJECT_DIR$/dao/interfaces/imagenCiudad.go" />
-        <option value="$PROJECT_DIR$/dao/interfaces/imagenPaisDAO.go" />
         <option value="$PROJECT_DIR$/dao/interfaces/imagenEntradaDAO.go" />
         <option value="$PROJECT_DIR$/dao/interfaces/usuarioEntradaDAO.go" />
         <option value="$PROJECT_DIR$/dao/interfaces/comentarioEntrada.go" />
@@ -202,26 +227,30 @@
         <option value="$PROJECT_DIR$/dao/mysql/imagenIMPL.go" />
         <option value="$PROJECT_DIR$/dao/mysql/tipoUsuarioIMPL.go" />
         <option value="$PROJECT_DIR$/dao/mysql/usuarioIMPL.go" />
-        <option value="$PROJECT_DIR$/../../../azer/crud/db.go" />
         <option value="$PROJECT_DIR$/../../../azer/crud/create.go" />
         <option value="$PROJECT_DIR$/models/gobalModel.go" />
-        <option value="$PROJECT_DIR$/../../../azer/crud/read.go" />
         <option value="$PROJECT_DIR$/../../../azer/crud/meta/slice.go" />
         <option value="$PROJECT_DIR$/../../../azer/crud/update.go" />
         <option value="$PROJECT_DIR$/../../../azer/logger/standard-output.go" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0c6c3884-b837-4643-bf91-89b68462889b/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4814c93c-98cb-4d15-8239-677b67d75349/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4814c93c-98cb-4d15-8239-677b67d75349/console_1.sql" />
-        <option value="$PROJECT_DIR$/routes/routes.go" />
-        <option value="$PROJECT_DIR$/routes/user.routes.go" />
         <option value="$PROJECT_DIR$/actions/entradas.actions.go" />
         <option value="$PROJECT_DIR$/dao/interfaces/globalDAO.go" />
-        <option value="$PROJECT_DIR$/dao/mysql/globalIMPL.go" />
-        <option value="$PROJECT_DIR$/actions/global.actions.go" />
-        <option value="$PROJECT_DIR$/routes/pais.routes.go" />
         <option value="$PROJECT_DIR$/models/globalModel.go" />
         <option value="$PROJECT_DIR$/actions/usuario.actions.go" />
+        <option value="$PROJECT_DIR$/routes/user.routes.go" />
+        <option value="$PROJECT_DIR$/routes/pais.routes.go" />
+        <option value="$PROJECT_DIR$/models/pais.go" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4814c93c-98cb-4d15-8239-677b67d75349/console_2.sql" />
+        <option value="$PROJECT_DIR$/routes/routes.go" />
+        <option value="$PROJECT_DIR$/routes/continente.routes.go" />
+        <option value="$PROJECT_DIR$/../../../azer/crud/db.go" />
+        <option value="$PROJECT_DIR$/../../../azer/crud/read.go" />
+        <option value="$PROJECT_DIR$/actions/continente.actions.go" />
+        <option value="$PROJECT_DIR$/actions/global.actions.go" />
         <option value="$PROJECT_DIR$/actions/pais.actions.go" />
+        <option value="$PROJECT_DIR$/dao/mysql/globalIMPL.go" />
       </list>
     </option>
   </component>
@@ -280,7 +309,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -325,6 +353,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -392,17 +421,17 @@
     <editor active="true" />
     <layout>
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32816902" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1614786" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16666667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969433" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29518718" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13164721" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32785088" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16995615" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16995615" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32253522" sideWeight="0.49791667" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -429,41 +458,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/ciudad.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/actions/main.actions.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/factory/tipoUsuarioFactory.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/factory/imagenFactory.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/interfaces/entradaDAO.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0c6c3884-b837-4643-bf91-89b68462889b/console_4.sql" />
     <entry file="file://C:/Go/src/net/url/url.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -600,13 +594,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../azer/crud/read.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../azer/crud/meta/slice.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -618,22 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="86" column="8" lean-forward="false" selection-start-line="86" selection-start-column="8" selection-end-line="91" selection-end-column="31" />
-          <folding>
-            <element signature="e#15#107#0" expanded="false" />
-            <element signature="n#!!block;n#Create#0" expanded="false" />
-            <element signature="n#!!block;n#GetAll#0" expanded="false" />
-            <element signature="e#567#603#0" expanded="false" />
-            <element signature="n#!!block;n#GetByID#0" expanded="false" />
-            <element signature="n#!!block;n#Update#0" expanded="false" />
-            <element signature="n#!!block;n#Delete#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../azer/crud/db.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="114" column="18" lean-forward="false" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -669,7 +640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-272">
           <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -684,7 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -692,7 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="21" lean-forward="false" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -700,9 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#14#71#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -710,17 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="21" lean-forward="false" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user.routes.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding>
-            <element signature="e#16#35#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -728,76 +682,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#EntradasGetAll#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dao/mysql/globalIMPL.go">
+    <entry file="file://$PROJECT_DIR$/routes/user.routes.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="207" column="0" lean-forward="true" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
-          <folding>
-            <element signature="e#15#55#0" expanded="true" />
-            <element signature="n#!!block;n#checkErr#0" expanded="false" />
-            <element signature="n#!!block;n#Create#0" expanded="false" />
-            <element signature="n#!!block;n#GetAll#0" expanded="false" />
-            <element signature="e#1476#1531#0" expanded="false" />
-            <element signature="n#!!block;n#GetByID#0" expanded="false" />
-            <element signature="n#!!block;n#GetOne#0" expanded="false" />
-            <element signature="n#!!block;n#Update#0" expanded="false" />
-            <element signature="n#!!block;n#Delete#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/actions/global.actions.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="61" column="23" lean-forward="false" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
-          <folding>
-            <element signature="n#!!block;n#response#0" expanded="false" />
-            <element signature="n#!!block;n#responses#0" expanded="false" />
-            <element signature="n#!!block;n#msjError#0" expanded="false" />
-            <element signature="n#!!block;n#config#0" expanded="false" />
-            <element signature="n#!!block;n#globalDAO#0" expanded="false" />
-            <element signature="n#!!block;n#checkErr#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/pais.routes.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding>
-            <element signature="e#16#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/routes.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding>
-            <element signature="e#711#879#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/interfaces/globalDAO.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state relative-caret-position="514">
+          <caret line="39" column="6" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="39" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/globalModel.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
+        <state relative-caret-position="349">
           <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
           <folding />
         </state>
@@ -805,29 +703,152 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/actions/usuario.actions.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="87" column="0" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+        <state relative-caret-position="125">
+          <caret line="107" column="21" lean-forward="false" selection-start-line="107" selection-start-column="21" selection-end-line="107" selection-end-column="21" />
           <folding>
             <element signature="n#!!block;n#UserCreate#0" expanded="false" />
-            <element signature="n#!!block;n#UserGetByID#0" expanded="false" />
             <element signature="n#!!block;n#UserUpdate#0" expanded="false" />
             <element signature="n#!!block;n#UserDelete#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actions/pais.actions.go">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/4814c93c-98cb-4d15-8239-677b67d75349/console_2.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/pais.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="8" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/routes.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+          <folding>
+            <element signature="e#223#341#0" expanded="false" />
+            <element signature="e#370#488#0" expanded="false" />
+            <element signature="e#517#635#0" expanded="false" />
+            <element signature="e#670#788#0" expanded="false" />
+            <element signature="e#1009#1177#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/interfaces/continenteDAO.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/interfaces/globalDAO.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/continente.routes.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="26" column="4" lean-forward="true" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+          <folding>
+            <element signature="e#16#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../azer/crud/read.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="83" column="4" lean-forward="false" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="4" />
+          <folding>
+            <element signature="e#14#98#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../azer/crud/db.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="108" column="12" lean-forward="true" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
+          <folding>
+            <element signature="e#14#101#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/global.actions.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="70" column="4" lean-forward="false" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+          <folding>
+            <element signature="e#17#139#0" expanded="true" />
+            <element signature="n#!!block;n#responses#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/pais.actions.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="33" column="8" lean-forward="false" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
           <folding>
             <element signature="e#17#71#0" expanded="true" />
-            <element signature="n#!!block;n#PaisCreate#0" expanded="false" />
             <element signature="n#!!block;n#PaisGet#0" expanded="false" />
             <element signature="n#!!block;n#PaisGetByID#0" expanded="false" />
             <element signature="n#!!block;n#PaisGetOne#0" expanded="false" />
             <element signature="n#!!block;n#PaisUpdate#0" expanded="false" />
             <element signature="n#!!block;n#PaisDelete#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/continente.actions.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="53" column="51" lean-forward="true" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="51" />
+          <folding>
+            <element signature="e#17#60#0" expanded="true" />
+            <element signature="n#!!block;n#ContinenteCreate#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/pais.routes.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+          <folding>
+            <element signature="e#16#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/mysql/globalIMPL.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="45" column="43" lean-forward="false" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="43" />
+          <folding>
+            <element signature="n#!!block;n#GetAll#0" expanded="false" />
+            <element signature="n#!!block;n#GetByID#0" expanded="false" />
+            <element signature="n#!!block;n#GetOne#0" expanded="false" />
+            <element signature="e#2865#3136#0" expanded="false" />
+            <element signature="e#3138#3321#0" expanded="false" />
+            <element signature="e#3323#3626#0" expanded="false" />
+            <element signature="n#!!block;n#Update#0" expanded="false" />
+            <element signature="n#!!block;n#Delete#0" expanded="false" />
           </folding>
         </state>
       </provider>

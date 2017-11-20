@@ -5,6 +5,6 @@ type Pais struct {
 	Nombre     string
 	Continente string
 	Moneda     string
-	UsoHorario string
+	Usohorario string
 	Idioma     string
 }

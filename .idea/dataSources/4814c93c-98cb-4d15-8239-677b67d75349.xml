@@ -1275,7 +1275,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="241" name="idContinente">
+    <column id="303" parent="241" name="continente">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
@@ -1300,7 +1300,7 @@
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="307" parent="241" name="fk_pais">
-      <ColNames>idContinente</ColNames>
+      <ColNames>continente</ColNames>
     </index>
     <key id="308" parent="241" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
@@ -1308,7 +1308,7 @@
       <Primary>1</Primary>
     </key>
     <foreign-key id="309" parent="241" name="fk_pais">
-      <ColNames>idContinente</ColNames>
+      <ColNames>continente</ColNames>
       <RefSchemaName>vixy</RefSchemaName>
       <RefTableName>continente</RefTableName>
       <RefColNames>id</RefColNames>

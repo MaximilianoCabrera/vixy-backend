@@ -12,4 +12,32 @@ var pais = Routes{
 		"/pais",
 		actions.PaisCreate,
 	},
+	//PaisGet
+	Route{
+		"PaisGet",
+		"GET",
+		"/pais",
+		actions.PaisGet,
+	},
+	//PaisGetBy
+	Route{
+		"PaisGetBy",
+		"GET",
+		"/pais/{id}",
+		actions.PaisGetByID,
+	},
+	//PaisUpdate
+	Route{
+		"PaisUpdate",
+		"PUT",
+		"/pais/update/{id}",
+		actions.PaisUpdate,
+	},
+	//PaisDelete
+	Route{
+		"PaisDelete",
+		"DELETE",
+		"/pais/{id}",
+		actions.PaisDelete,
+	},
 }

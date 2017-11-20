@@ -10,14 +10,13 @@ var user = Routes{
 		"/usuario",
 		actions.UserCreate,
 	},
-	//UserGetAll
+	//UserGet
 	Route{
 		"UserGet",
 		"GET",
 		"/usuario",
 		actions.UserGet,
 	},
-
 	//UserGetBy
 	Route{
 		"UserGetBy",

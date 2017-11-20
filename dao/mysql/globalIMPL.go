@@ -4,6 +4,7 @@ import (
 	"../../models"
 	"log"
 	"fmt"
+	"encoding/json"
 )
 
 type GlobalImplMysql struct{}
@@ -26,39 +27,51 @@ func (dao GlobalImplMysql) Create(x *models.GlobalModel, model string) (models.G
 		err := DB().CreateAndRead(&x.Imagen)
 		checkErr("Error al crear imagen: ", err)
 	case "pais":
-		err := DB().CreateAndRead(&x.Pais)
+
+		pais, err := json.Marshal(struct{
+			Nombre     string
+			Continente int
+			Moneda     string
+			Usohorario string
+			Idioma     string
+			}{
+			x.Pais.Nombre,
+			x.Continente.ID,
+			x.Pais.Moneda,
+			x.Pais.Usohorario,
+			x.Pais.Idioma,
+		})
+		fmt.Println("*******************")
+
+		fmt.Println("PAIS: ", string(pais))
+		//No puedo mandar un json, tengo q pasar los datos del JSON a una variable
+		err = DB().Create(string(pais))
 		checkErr("Error al crear pais: ", err)
+
+		err = DB().Read(x.Pais, "SELECT * FROM pais WHERE id = ?", x.Continente.ID)
+		fmt.Println("CARGADO PAIS: ", x.Pais)
 	default:
 		log.Println("Modelo ingresado no existente")
 	}
 	return *x, nil
 }
 func (dao GlobalImplMysql) GetAll(model string) (models.GlobalModels, error){
-	var x models.GlobalModel
 	var a models.GlobalModels
 
 	switch model {
 	case "user":
 		err := DB().Read(&a.User, "SELECT * FROM usuario")
 		checkErr("Error al querer obtener todas los usuarios", err)
-
-		for _, usuario := range a.User{
-			x.User = usuario
-		}
 	case "imagen":
 		err := DB().Read(&a.Imagen, "SELECT * FROM imagen")
 		checkErr("Error al querer obtener todas las imágenes: ", err)
 
-		for _, img := range a.Imagen{
-			x.Imagen = img
-		}
 	case "pais":
 		err := DB().Read(&a.Pais, "SELECT * FROM pais")
 		checkErr("Error al querer obtener todas los paises", err)
-
-		for _, pais := range a.Pais{
-			x.Pais = pais
-		}
+	case "continente":
+		err := DB().Read(&a.Continente, "SELECT * FROM continente")
+		checkErr("Error al querer obtener todos los continentes", err)
 	default:
 		log.Println("Modelo ingresado no existente")
 	}
@@ -95,17 +108,20 @@ func (dao GlobalImplMysql) GetOne(x models.GlobalModel, model string) (models.Gl
 		var user models.Usuario
 		err := DB().Read(&user, "SELECT * FROM usuario WHERE nombre = ? OR apellido = ? OR nick = ? OR email = ? ", x.User.Nombre, x.User.Apellido, x.User.Nick, x.User.Email)
 		x.User = user
-		checkErr("Error al obtener Usuario: ", err)
+		checkErr("Error al buscar el Usuario: ", err)
 	case "imagen":
 		var img models.Imagen
 		err := DB().Read(&img, "SELECT * FROM pais WHERE imagen = ?", x.Imagen.Imagen)
-		checkErr("Error al crear imagen: ", err)
+		checkErr("Error al buscar la imagen: ", err)
 		x.Imagen = img
 	case "pais":
 		var pais models.Pais
-		err := DB().Read(&pais, "SELECT * FROM pais WHERE nombre = ?, idContinente = ?, moneda = ?, usoHorario = ?, idioma = ?", x.Pais.Nombre, x.Pais.Continente, x.Pais.Moneda, x.Pais.UsoHorario, x.Pais.Idioma)
-		checkErr("Error al crear pais: ", err)
+		err := DB().Read(&pais, "SELECT * FROM pais WHERE nombre = ?, idContinente = ?, moneda = ?, usoHorario = ?, idioma = ?", x.Pais.Nombre, x.Pais.Continente, x.Pais.Moneda, x.Pais.Usohorario, x.Pais.Idioma)
+		checkErr("Error al buscar el  pais: ", err)
 		x.Pais = pais
+	case "continente":
+		err := DB().Read(&x.Continente, "SELECT * FROM continente WHERE nombre = ?", x.Continente.Nombre)
+		checkErr("Error al buscar el continente: ", err)
 	default:
 		log.Println("Modelo ingresado no existente")
 	}
@@ -168,8 +184,8 @@ func (dao GlobalImplMysql) Update (x models.GlobalModel, model string) (models.G
 		if x.Pais.Moneda == ""{
 			x.Pais.Moneda = pais.Moneda
 		}
-		if x.Pais.UsoHorario == ""{
-			x.Pais.UsoHorario = pais.UsoHorario
+		if x.Pais.Usohorario == ""{
+			x.Pais.Usohorario = pais.Usohorario
 		}
 		if x.Pais.Idioma == ""{
 			x.Pais.Idioma = pais.Idioma
