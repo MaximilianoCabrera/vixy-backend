@@ -6,37 +6,37 @@ import (
 	"net/http"
 )
 
-//NewMainRouter creo las rutas
 func NewMainRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(false)
 
-	for _, route := range routes {
-		router.
-			Methods(route.Method).
-			Path(route.Pattern).
-			Name(route.Name).
-			HandlerFunc(route.HandleFunc)
+	rutas := []Routes{
+		routes,
+		//actividad,
+		ciudad,
+		//comentario,
+		//comentarioEntrada,
+		continente,
+		//entrada,
+		//imagen,
+		//imagenCiudad,
+		//imagenEntrada,
+		//imagenPais,
+		pais,
+		//tipoUsuario,
+		//topic,
+		usuario,
+		//usuarioEntrada,
+
 	}
-	for _, route := range user {
-		router.
-			Methods(route.Method).
-			Path(route.Pattern).
-			Name(route.Name).
-			HandlerFunc(route.HandleFunc)
-	}
-	for _, route := range pais {
-		router.
-			Methods(route.Method).
-			Path(route.Pattern).
-			Name(route.Name).
-			HandlerFunc(route.HandleFunc)
-	}
-	for _, route := range continente {
-		router.
-			Methods(route.Method).
-			Path(route.Pattern).
-			Name(route.Name).
-			HandlerFunc(route.HandleFunc)
+
+	for _, ruts := range rutas{
+		for _, route := range ruts {
+			router.
+				Methods(route.Method).
+				Path(route.Pattern).
+				Name(route.Name).
+				HandlerFunc(route.HandleFunc)
+		}
 	}
 	return router
 }
@@ -60,12 +60,11 @@ var routes = Routes{
 		"/",
 		actions.Index,
 	},
-	//EntradasGetAll
 	Route{
-		"EntradasGetAll",
+		"Cerrar App",
 		"GET",
-		"/entradas",
-		actions.EntradasGetAll,
+		"/salir",
+		actions.Close,
 	},
 }
 

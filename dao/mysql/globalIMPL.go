@@ -90,7 +90,7 @@ func (dao GlobalImplMysql) GetByID(id int, model string) (models.GlobalModel, er
 	}
 	return x, nil
 }
-func (dao GlobalImplMysql) GetOne(x models.GlobalModel, model string) (models.GlobalModels, error) {
+func (dao GlobalImplMysql) GetBy(x models.GlobalModel, model string) (models.GlobalModels, error) {
 	a := models.GlobalModels{}
 	switch model {
 	case "user":

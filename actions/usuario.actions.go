@@ -88,7 +88,7 @@ func UserGet(w http.ResponseWriter, r *http.Request) {
 		x.User = user
 		globalDAO := globalDAO()
 		fmt.Println("GETONE USER")
-		a, err := globalDAO.GetOne(x, "user")
+		a, err := globalDAO.GetBy(x, "user")
 		if err != nil {
 			fmt.Println("ERROR EN GETONE USER")
 			responses(w, 404, a, "user", err)
@@ -147,7 +147,7 @@ func UserUpdate(w http.ResponseWriter, r *http.Request) {
 
 		fmt.Println("Img: ", img)
 
-		a, err := globalDAO.GetOne(x, "imagen")
+		a, err := globalDAO.GetBy(x, "imagen")
 		if err != nil {
 			responses(w, 404, a, "imagen",err)
 		} else{

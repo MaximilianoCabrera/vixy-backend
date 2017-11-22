@@ -27,7 +27,7 @@ func PaisCreate(w http.ResponseWriter, r *http.Request) {
 		x.Pais.Idioma != "" {
 
 		globalDAO := globalDAO()
-		a, err := globalDAO.GetOne(x, "continente")
+		a, err := globalDAO.GetBy(x, "continente")
 		checkErr("continente", "getOne", err)
 
 		x.Pais.Continente = a.Continente[0].ID
@@ -60,14 +60,14 @@ func PaisGet(w http.ResponseWriter, r *http.Request) {
 
 		globalDAO := globalDAO()
 		if x.Continente.Nombre != ""{
-			a, err := globalDAO.GetOne(x, "continente")
+			a, err := globalDAO.GetBy(x, "continente")
 			checkErr("continente", "getOne", err)
 
 			log.Println("continente: ", a.Continente[0].ID)
 			x.Pais.Continente = a.Continente[0].ID
 		}
 
-		a, err := globalDAO.GetOne(x, "pais")
+		a, err := globalDAO.GetBy(x, "pais")
 		if err != nil {
 			responses(w, 404, a, "pais", err)
 		}
@@ -114,7 +114,7 @@ func PaisUpdate(w http.ResponseWriter, r *http.Request) {
 
 	globalDAO := globalDAO()
 	if x.Continente.Nombre != ""{
-		a, err := globalDAO.GetOne(x, "continente")
+		a, err := globalDAO.GetBy(x, "continente")
 		checkErr("continente", "getOne", err)
 
 		x.Pais.Continente = a.Continente[0].ID

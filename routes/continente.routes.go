@@ -5,41 +5,39 @@ import (
 )
 
 var continente = Routes{
-	//ContinenteCreate
+	//Create
 	Route{
 		"ContinenteCreate",
 		"POST",
 		"/continente",
 		actions.ContinenteCreate,
 	},
-	//ContinenteGet
+	//Get 8(GetAll - GetBy)
 	Route{
 		"ContinenteGet",
 		"GET",
 		"/continente",
-		actions.ContinenteGet,
+		actions.ContinenteGetBy,
 	},
-/*
-	//ContinenteGetBy
+	//GetByID
 	Route{
 		"ContinenteGetBy",
 		"GET",
 		"/continente/{id}",
 		actions.ContinenteGetByID,
 	},
-	//ContinenteUpdate
+	//Update
 	Route{
 		"ContinenteUpdate",
 		"PUT",
 		"/continente/update/{id}",
 		actions.ContinenteUpdate,
 	},
-	//ContinenteDelete
+	//Delete
 	Route{
 		"ContinenteDelete",
 		"DELETE",
 		"/continente/{id}",
 		actions.ContinenteDelete,
 	},
-*/
 }

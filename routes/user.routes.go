@@ -2,7 +2,7 @@ package routes
 
 import "../actions"
 
-var user = Routes{
+var usuario = Routes{
 	//UserCreate
 	Route{
 		"UserCreate",

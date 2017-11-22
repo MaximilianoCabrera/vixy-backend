@@ -30,7 +30,7 @@ func ContinenteCreate(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("")
 	}
 }
-func ContinenteGet(w http.ResponseWriter, r *http.Request) {
+func ContinenteGetByID(w http.ResponseWriter, r *http.Request) {
 	var x models.GlobalModel
 
 	a := r.URL.Query()
@@ -38,7 +38,7 @@ func ContinenteGet(w http.ResponseWriter, r *http.Request) {
 
 	if x.Continente.Nombre != ""{
 		globalDAO := globalDAO()
-		a, err := globalDAO.GetOne(x, "continente")
+		a, err := globalDAO.GetBy(x, "continente")
 		if err != nil {
 			responses(w, 404, a, "continente", err)
 		}
@@ -54,3 +54,8 @@ func ContinenteGet(w http.ResponseWriter, r *http.Request) {
 		responses(w, 200, x, "continente", nil)
 	}
 }
+func ContinenteGetBy(w http.ResponseWriter, r *http.Request){
+
+}
+func ContinenteUpdate(w http.ResponseWriter, r *http.Request){}
+func ContinenteDelete(w http.ResponseWriter, r *http.Request){}
