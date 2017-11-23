@@ -30,7 +30,7 @@ func ContinenteCreate(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("")
 	}
 }
-func ContinenteGetByID(w http.ResponseWriter, r *http.Request) {
+func ContinenteGetBy(w http.ResponseWriter, r *http.Request) {
 	var x models.GlobalModel
 
 	a := r.URL.Query()
@@ -54,7 +54,7 @@ func ContinenteGetByID(w http.ResponseWriter, r *http.Request) {
 		responses(w, 200, x, "continente", nil)
 	}
 }
-func ContinenteGetBy(w http.ResponseWriter, r *http.Request){
+func ContinenteGetByID(w http.ResponseWriter, r *http.Request){
 
 }
 func ContinenteUpdate(w http.ResponseWriter, r *http.Request){}

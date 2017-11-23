@@ -12,7 +12,7 @@ var continente = Routes{
 		"/continente",
 		actions.ContinenteCreate,
 	},
-	//Get 8(GetAll - GetBy)
+	//Get (GetAll - GetBy)
 	Route{
 		"ContinenteGet",
 		"GET",

@@ -26,7 +26,6 @@ func NewMainRouter() *mux.Router {
 		//topic,
 		usuario,
 		//usuarioEntrada,
-
 	}
 
 	for _, ruts := range rutas{
